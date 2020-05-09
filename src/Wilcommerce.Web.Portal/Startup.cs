@@ -8,6 +8,14 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Wilcommerce.Catalog.Data.EFCore;
+using Wilcommerce.Catalog.Data.EFCore.Migrations;
+using Wilcommerce.Catalog.Data.EFCore.ReadModels;
+using Wilcommerce.Catalog.ServiceProvider;
+using Wilcommerce.Core.Data.EFCore;
+using Wilcommerce.Core.Data.EFCore.Events;
+using Wilcommerce.Core.Data.EFCore.Migrations;
+using Wilcommerce.Core.ServiceProvider;
 
 namespace Wilcommerce.Web.Portal
 {
@@ -23,6 +31,14 @@ namespace Wilcommerce.Web.Portal
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services
+                .AddEventsContext<EventsContext>(Configuration.GetConnectionString("Wilcommerce-Events"))
+                .AddCatalogContext<CatalogContext>(Configuration.GetConnectionString("Wilcommerce-Catalog"));
+
+            services
+                .AddWilcommerceCore<EventStore>()
+                .AddWilcommerceCatalog<CatalogDatabase, Catalog.Data.EFCore.Repository.Repository>();
+
             services.AddControllersWithViews();
         }
 
