@@ -4,4 +4,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Wilcommerce.Catalog.ServiceProvider\Wilcommerce.Catalog.ServiceProvider.csproj" />
+    <ProjectReference Include="..\Wilcommerce.Core.ServiceProvider\Wilcommerce.Core.ServiceProvider.csproj" />
+    <ProjectReference Include="..\Wilcommerce.Registries.ServiceProvider\Wilcommerce.Registries.ServiceProvider.csproj" />
+  </ItemGroup>
+
 </Project>
