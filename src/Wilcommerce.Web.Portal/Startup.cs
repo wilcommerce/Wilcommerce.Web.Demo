@@ -48,6 +48,7 @@ namespace Wilcommerce.Web.Portal
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseWebAssemblyDebugging();
             }
             else
             {
@@ -68,6 +69,8 @@ namespace Wilcommerce.Web.Portal
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseWilcommerceAdmin("/admin");
         }
     }
 }

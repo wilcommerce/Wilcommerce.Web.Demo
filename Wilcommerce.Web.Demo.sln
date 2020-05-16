@@ -15,13 +15,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Registries", "Registries", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Core.ServiceProvider", "src\Wilcommerce.Core.ServiceProvider\Wilcommerce.Core.ServiceProvider.csproj", "{A6FC9B91-F53B-43B6-9058-4B721355102C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilcommerce.Catalog.ServiceProvider", "src\Wilcommerce.Catalog.ServiceProvider\Wilcommerce.Catalog.ServiceProvider.csproj", "{1359F6B6-9646-456A-8FFC-7425939ED9A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Catalog.ServiceProvider", "src\Wilcommerce.Catalog.ServiceProvider\Wilcommerce.Catalog.ServiceProvider.csproj", "{1359F6B6-9646-456A-8FFC-7425939ED9A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilcommerce.Registries.ServiceProvider", "src\Wilcommerce.Registries.ServiceProvider\Wilcommerce.Registries.ServiceProvider.csproj", "{B40093D5-1370-4B09-9631-2CE61D898DDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Registries.ServiceProvider", "src\Wilcommerce.Registries.ServiceProvider\Wilcommerce.Registries.ServiceProvider.csproj", "{B40093D5-1370-4B09-9631-2CE61D898DDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilcommerce.Core.Data.EFCore.Migrations", "src\Wilcommerce.Core.Data.EFCore.Migrations\Wilcommerce.Core.Data.EFCore.Migrations.csproj", "{803B8A84-DA8C-400C-8C79-DCF31A4AECBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Core.Data.EFCore.Migrations", "src\Wilcommerce.Core.Data.EFCore.Migrations\Wilcommerce.Core.Data.EFCore.Migrations.csproj", "{803B8A84-DA8C-400C-8C79-DCF31A4AECBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilcommerce.Catalog.Data.EFCore.Migrations", "src\Wilcommerce.Catalog.Data.EFCore.Migrations\Wilcommerce.Catalog.Data.EFCore.Migrations.csproj", "{FFBDA93D-AF1E-49D7-9362-EC72B769BE14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Catalog.Data.EFCore.Migrations", "src\Wilcommerce.Catalog.Data.EFCore.Migrations\Wilcommerce.Catalog.Data.EFCore.Migrations.csproj", "{FFBDA93D-AF1E-49D7-9362-EC72B769BE14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilcommerce.Web.Admin", "Wilcommerce.Web.Admin\Wilcommerce.Web.Admin.csproj", "{F53C079F-DEFC-415A-B24E-7A401B1C69C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{FFBDA93D-AF1E-49D7-9362-EC72B769BE14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFBDA93D-AF1E-49D7-9362-EC72B769BE14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFBDA93D-AF1E-49D7-9362-EC72B769BE14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F53C079F-DEFC-415A-B24E-7A401B1C69C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F53C079F-DEFC-415A-B24E-7A401B1C69C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F53C079F-DEFC-415A-B24E-7A401B1C69C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F53C079F-DEFC-415A-B24E-7A401B1C69C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{B40093D5-1370-4B09-9631-2CE61D898DDD} = {1EE36529-95E2-41D2-AA6F-04623E0783B6}
 		{803B8A84-DA8C-400C-8C79-DCF31A4AECBC} = {FFDC7A6F-31B5-41A5-8867-E81BC1E7CFB7}
 		{FFBDA93D-AF1E-49D7-9362-EC72B769BE14} = {57A8817E-E64D-4027-9FDB-4BFFD8D65C00}
+		{F53C079F-DEFC-415A-B24E-7A401B1C69C6} = {A1E2ECD6-3D25-4E25-8BE9-C863F5BA43E4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA6A1EC0-2DCE-4500-B23D-A87D328D58F5}
