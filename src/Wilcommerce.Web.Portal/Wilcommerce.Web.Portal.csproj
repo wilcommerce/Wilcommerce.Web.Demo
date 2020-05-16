@@ -13,12 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Wilcommerce.Web.Admin\Wilcommerce.Web.Admin.csproj" />
     <ProjectReference Include="..\Wilcommerce.Catalog.Data.EFCore.Migrations\Wilcommerce.Catalog.Data.EFCore.Migrations.csproj" />
     <ProjectReference Include="..\Wilcommerce.Catalog.ServiceProvider\Wilcommerce.Catalog.ServiceProvider.csproj" />
     <ProjectReference Include="..\Wilcommerce.Core.Data.EFCore.Migrations\Wilcommerce.Core.Data.EFCore.Migrations.csproj" />
     <ProjectReference Include="..\Wilcommerce.Core.ServiceProvider\Wilcommerce.Core.ServiceProvider.csproj" />
     <ProjectReference Include="..\Wilcommerce.Registries.ServiceProvider\Wilcommerce.Registries.ServiceProvider.csproj" />
+    <ProjectReference Include="..\Wilcommerce.Web.Admin\Wilcommerce.Web.Admin.csproj" />
   </ItemGroup>
 
 </Project>
