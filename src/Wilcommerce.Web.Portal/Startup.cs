@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Wilcommerce.Catalog.Admin.Api;
 using Wilcommerce.Catalog.Data.EFCore;
 using Wilcommerce.Catalog.Data.EFCore.Migrations;
 using Wilcommerce.Catalog.Data.EFCore.ReadModels;
@@ -38,6 +39,9 @@ namespace Wilcommerce.Web.Portal
             services
                 .AddWilcommerceCore<EventStore>()
                 .AddWilcommerceCatalog<CatalogDatabase, Catalog.Data.EFCore.Repository.Repository>();
+
+            services
+                .AddWilcommerceCatalogAdminApi();
 
             services.AddControllersWithViews();
         }
