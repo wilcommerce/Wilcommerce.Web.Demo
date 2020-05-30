@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Wilcommerce.Catalog.Admin.Api.Models.Brands;
 using Wilcommerce.Catalog.Admin.Models.Brands;
 using Wilcommerce.Catalog.Commands;
 using Wilcommerce.Catalog.ReadModels;
@@ -22,25 +23,47 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
             Commands = commands ?? throw new ArgumentNullException(nameof(commands));
         }
 
-        public IEnumerable<BrandListItemModel> GetBrands(bool activeOnly)
+        public BrandListModel GetBrands(BrandListQueryModel queryModel)
         {
+            if (queryModel is null)
+            {
+                queryModel = new BrandListQueryModel();
+            }
+
             var brandsQuery = Database.Brands;
-            if (activeOnly)
+            if (queryModel.ActiveOnly)
             {
                 brandsQuery = brandsQuery.Active();
             }
+            if (!string.IsNullOrWhiteSpace(queryModel.Query))
+            {
+                brandsQuery = brandsQuery.Where(b => b.Name.Contains(queryModel.Query) || b.Description.Contains(queryModel.Query));
+            }
 
-            var brands = Database.Brands
+            int skip = (queryModel.Page - 1) * queryModel.Size;
+
+            int total = brandsQuery.Count();
+            var items = brandsQuery
                 .OrderBy(b => b.Name)
-                .Select(b => new BrandListItemModel
+                .Select(b => new BrandListModel.ListItem
                 {
                     Id = b.Id,
+                    Description = b.Description,
                     Name = b.Name,
-                    Url = b.Url,
-                    Description = b.Description
-                }).ToArray();
+                    Url = b.Url
+                }).Skip(skip).Take(queryModel.Size).ToArray();
 
-            return brands;
+            double pages = total / queryModel.Page;
+
+            var model = new BrandListModel
+            {
+                Total = total,
+                CurrentPage = pages == 0 ? 0 : queryModel.Page,
+                TotalPages = Convert.ToInt32(Math.Ceiling(pages)),
+                Items = items
+            };
+
+            return model;
         }
 
         public async Task<Guid> CreateNewBrand(BrandInfoModel model)

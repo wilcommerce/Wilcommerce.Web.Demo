@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Wilcommerce.Catalog.Admin.Api.Models.Brands;
 using Wilcommerce.Catalog.Admin.Models.Brands;
 using Wilcommerce.Core.Common.Models;
 
@@ -8,7 +9,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
 {
     public interface IBrandsControllerServices
     {
-        IEnumerable<BrandListItemModel> GetBrands(bool activeOnly);
+        BrandListModel GetBrands(BrandListQueryModel queryModel);
         
         Task<Guid> CreateNewBrand(BrandInfoModel model);
         

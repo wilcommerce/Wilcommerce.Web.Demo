@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Wilcommerce.Catalog.Admin.Api.Models.Brands;
 using Wilcommerce.Catalog.Admin.Api.Services;
 using Wilcommerce.Catalog.Admin.Models.Brands;
 using Wilcommerce.Core.Common.Models;
@@ -24,12 +25,12 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery] bool activeOnly = true)
+        public IActionResult Get([FromQuery]BrandListQueryModel queryModel)
         {
-            var brands = ControllerServices.GetBrands(activeOnly);
-            _logger.LogInformation($"Found {brands.Count()} brands");
+            var model = ControllerServices.GetBrands(queryModel);
+            _logger.LogInformation($"Found {model.Items.Count()} brands of {model.Total}");
 
-            return Ok(brands);
+            return Ok(model);
         }
 
         [HttpPost]
