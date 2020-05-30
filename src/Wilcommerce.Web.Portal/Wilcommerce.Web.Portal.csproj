@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Wilcommerce.Catalog.Admin.Api\Wilcommerce.Catalog.Admin.Api.csproj" />
     <ProjectReference Include="..\Wilcommerce.Catalog.Data.EFCore.Migrations\Wilcommerce.Catalog.Data.EFCore.Migrations.csproj" />
     <ProjectReference Include="..\Wilcommerce.Catalog.ServiceProvider\Wilcommerce.Catalog.ServiceProvider.csproj" />
     <ProjectReference Include="..\Wilcommerce.Core.Data.EFCore.Migrations\Wilcommerce.Core.Data.EFCore.Migrations.csproj" />
