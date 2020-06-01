@@ -1,0 +1,28 @@
+﻿<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Url</th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var brand in Brands.Items)
+        {
+            <tr>
+                <td>@brand.Name</td>
+                <td>@brand.Url</td>
+                <td class="col-auto">
+                    <button type="button" class="btn btn-outline-primary" @onclick="() => OpenBrandDetail(brand)">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </td>
+                <td class="col-auto">
+                    <button type="button" class="btn btn-outline-danger">
+                        <i class="far fa-trash-alt"></i> Delete
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
