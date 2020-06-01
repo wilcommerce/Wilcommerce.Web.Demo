@@ -1,4 +1,8 @@
-﻿namespace Wilcommerce.Catalog.Admin.Api.Models.Brands
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Wilcommerce.Catalog.Admin.Models.Brands
 {
     public class BrandListQueryModel
     {

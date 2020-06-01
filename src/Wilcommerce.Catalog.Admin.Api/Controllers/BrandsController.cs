@@ -3,14 +3,13 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Wilcommerce.Catalog.Admin.Api.Models.Brands;
 using Wilcommerce.Catalog.Admin.Api.Services;
 using Wilcommerce.Catalog.Admin.Models.Brands;
 using Wilcommerce.Core.Common.Models;
 
 namespace Wilcommerce.Catalog.Admin.Api.Controllers
 {
-    [Route("admin/api/catalog/[controller]")]
+    [Route("api/admin/catalog/[controller]")]
     [ApiController]
     public class BrandsController : ControllerBase
     {
