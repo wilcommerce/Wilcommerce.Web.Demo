@@ -1,0 +1,25 @@
+﻿@page "/catalog/brands"
+
+<div class="row">
+    <div class="col">
+        <h3>Brands</h3>
+    </div>
+    <div class="col-auto align-content-center">
+        <a href="/catalog/brands/new" class="btn btn-primary">
+            <i class="fas fa-plus-circle"></i> Create new brand
+        </a>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col">
+        @if (brands == null)
+        {
+            <Loader />
+        }
+        else
+        {
+            <p>@brands.Items.Count() Brands found</p>
+        }
+    </div>
+</div>

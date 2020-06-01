@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Catalog.Admin.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Catalog.Admin.Models", "src\Wilcommerce.Catalog.Admin.Models\Wilcommerce.Catalog.Admin.Models.csproj", "{4756AD00-DFB7-4AD0-9F17-300FD898BDEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilcommerce.Web.AspNetCore", "src\Wilcommerce.Web.AspNetCore\Wilcommerce.Web.AspNetCore.csproj", "{0D9E9B1C-A6BE-485E-AE5A-995294764B8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Web.AspNetCore", "src\Wilcommerce.Web.AspNetCore\Wilcommerce.Web.AspNetCore.csproj", "{0D9E9B1C-A6BE-485E-AE5A-995294764B8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
