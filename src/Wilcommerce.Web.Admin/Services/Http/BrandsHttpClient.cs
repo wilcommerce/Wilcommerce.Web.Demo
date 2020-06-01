@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.Brands;
 using Wilcommerce.Core.Common.Models;
 using Wilcommerce.Web.Admin.Services.Url;
+using Wilcommerce.Web.AspNetCore.Http;
 
 namespace Wilcommerce.Web.Admin.Services.Http
 {
@@ -28,18 +30,23 @@ namespace Wilcommerce.Web.Admin.Services.Http
             return brands;
         }
 
-        public async Task<Guid> CreateNewBrand(BrandInfoModel model)
+        public async Task CreateNewBrand(BrandInfoModel model)
         {
             var url = UrlBuilder.CreateNewBrandUrl();
 
-            var response = await Client.PostAsJsonAsync(url, model);
+            //var imageByteArray = model.Image.ToByteArray();
+
+            var requestContent = new MultipartFormDataContent();
+            requestContent.Add(new StringContent(model.Name), "name");
+            requestContent.Add(new StringContent(model.Url), "url");
+            requestContent.Add(new StringContent(model.Description), "description");
+            //requestContent.Add(new ByteArrayContent(imageByteArray), "image", model.Image.FileName);
+
+            var response = await Client.PostAsync(url, requestContent);
             if (!response.IsSuccessStatusCode)
             {
                 throw new ApplicationException($"Create new brand call ended with status code {response.StatusCode}");
             }
-
-            var content = await response.Content.ReadAsStringAsync();
-            return Guid.Parse(content);
         }
 
         public async Task<BrandDetailModel> GetBrandDetail(Guid brandId)

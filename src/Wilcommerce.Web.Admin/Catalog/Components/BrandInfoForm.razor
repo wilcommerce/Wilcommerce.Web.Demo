@@ -1,0 +1,28 @@
+﻿<EditForm Context="context" Model="Model" OnValidSubmit="HandleSubmit" class="col-md-12 mt-3">
+    <DataAnnotationsValidator />
+
+    <div class="form-group row">
+        <Label For="Model.Name">Name</Label>
+        <InputText @bind-Value="Model.Name" class="form-control" />
+        <ValidationMessage For="() => Model.Name" />
+    </div>
+    <div class="form-group row">
+        <Label For="Model.Url">Url</Label>
+        <InputText @bind-Value="Model.Url" class="form-control" />
+        <ValidationMessage For="() => Model.Url" />
+    </div>
+    <div class="form-group row">
+        <Label For="Model.Image">Logo</Label>
+        <FileEdit Changed="@OnLogoChanged" />
+    </div>
+    <div class="form-group row">
+        <Label For="Model.Description">Description</Label>
+        <InputTextArea @bind-Value="Model.Description" class="form-control" />
+        <ValidationMessage For="() => Model.Description" />
+    </div>
+
+    <div class="form-group row align-content-end">
+        <button type="button" class="btn btn-outline-primary mr-3">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</EditForm>
