@@ -61,7 +61,15 @@ namespace Wilcommerce.Web.Admin.Services.Http
         {
             var url = UrlBuilder.UpdateBrandInfoUrl(brandId);
 
-            var response = await Client.PutAsJsonAsync(url, model);
+            //var imageByteArray = model.Image.ToByteArray();
+
+            var requestContent = new MultipartFormDataContent();
+            requestContent.Add(new StringContent(model.Name), "name");
+            requestContent.Add(new StringContent(model.Url), "url");
+            requestContent.Add(new StringContent(model.Description), "description");
+            //requestContent.Add(new ByteArrayContent(imageByteArray), "image", model.Image.FileName);
+
+            var response = await Client.PutAsync(url, requestContent);
             if (!response.IsSuccessStatusCode)
             {
                 throw new ApplicationException($"Create new brand call ended with status code {response.StatusCode}");

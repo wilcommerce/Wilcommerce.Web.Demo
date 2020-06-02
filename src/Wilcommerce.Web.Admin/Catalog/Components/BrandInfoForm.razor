@@ -1,28 +1,38 @@
 ﻿<EditForm Context="context" Model="Model" OnValidSubmit="HandleSubmit" class="col-md-12 mt-3">
     <DataAnnotationsValidator />
 
+    @if (Readonly && !editingEnabled)
+    {
+        <div class="form-group row">
+            <button type="button" class="btn btn-outline-secondary" @onclick="EnableEditing">Edit data</button>
+        </div>
+    }
+
     <div class="form-group row">
-        <Label For="Model.Name">Name</Label>
-        <InputText @bind-Value="Model.Name" class="form-control" />
+        <label for="@nameof(Model.Name)">Name</label>
+        <InputText @bind-Value="Model.Name" class="@formControlClass" />
         <ValidationMessage For="() => Model.Name" />
     </div>
     <div class="form-group row">
-        <Label For="Model.Url">Url</Label>
-        <InputText @bind-Value="Model.Url" class="form-control" />
+        <label for="@nameof(Model.Url)">Url</label>
+        <InputText @bind-Value="Model.Url" class="@formControlClass" />
         <ValidationMessage For="() => Model.Url" />
     </div>
     <div class="form-group row">
-        <Label For="Model.Image">Logo</Label>
-        <FileEdit Changed="@OnLogoChanged" />
+        <label for="@nameof(Model.Image)">Logo</label>
+        <FileEdit Changed="@OnLogoChanged" class="@formControlClass" />
     </div>
     <div class="form-group row">
-        <Label For="Model.Description">Description</Label>
-        <InputTextArea @bind-Value="Model.Description" class="form-control" />
+        <label for="@nameof(Model.Description)">Description</label>
+        <InputTextArea @bind-Value="Model.Description" class="@formControlClass" />
         <ValidationMessage For="() => Model.Description" />
     </div>
 
-    <div class="form-group row align-content-end">
-        <button type="button" class="btn btn-outline-primary mr-3">Cancel</button>
-        <button type="submit" class="btn btn-primary">Save</button>
-    </div>
+    @if (!Readonly || editingEnabled)
+    {
+        <div class="form-group row align-content-end">
+            <button type="reset" class="btn btn-outline-primary mr-3" @onclick="Cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    }
 </EditForm>

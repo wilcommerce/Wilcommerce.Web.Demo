@@ -16,20 +16,56 @@ namespace Wilcommerce.Web.Admin.Catalog.Components
         public BrandInfoModel Model { get; set; }
 
         [Parameter]
+        public bool Readonly { get; set; }
+
+        [Parameter]
         public EventCallback<BrandInfoModel> OnModelSaved { get; set; }
 
         EditContext context;
 
+        bool editingEnabled;
+
+        private BrandInfoModel _originalModel;
+
+        string formControlClass => editingEnabled ? "form-control" : "form-control-plaintext";
+
         protected override Task OnInitializedAsync()
         {
             context = new EditContext(Model);
+            editingEnabled = !Readonly;
+
+            _originalModel = new BrandInfoModel
+            {
+                Description = Model.Description,
+                Image = Model.Image,
+                Name = Model.Name,
+                Url = Model.Url
+            };
+
             return base.OnInitializedAsync();
         }
 
-        async Task HandleSubmit()
+        async Task HandleSubmit() => await OnModelSaved.InvokeAsync(Model);
+
+        void Cancel()
         {
-            await OnModelSaved.InvokeAsync(Model);
+            Model = new BrandInfoModel
+            {
+                Description = _originalModel.Description,
+                Image = _originalModel.Image,
+                Name = _originalModel.Name,
+                Url = _originalModel.Url
+            };
+
+            if (Readonly)
+            {
+                editingEnabled = false;
+            }
+
+            StateHasChanged();
         }
+
+        void EnableEditing() => editingEnabled = true;
 
         async Task OnLogoChanged(FileChangedEventArgs e)
         {
