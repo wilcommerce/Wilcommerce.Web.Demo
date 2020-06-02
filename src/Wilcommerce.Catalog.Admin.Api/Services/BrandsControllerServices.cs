@@ -48,7 +48,8 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
                     Id = b.Id,
                     Description = b.Description,
                     Name = b.Name,
-                    Url = b.Url
+                    Url = b.Url,
+                    Deleted = b.Deleted
                 }).Skip(skip).Take(queryModel.Size).ToArray();
 
             double pages = total / queryModel.Page;

@@ -12,6 +12,8 @@ namespace Wilcommerce.Web.Admin.Catalog.Pages
 
         private BrandListModel brands;
 
+        private bool loading;
+
         protected override async Task OnInitializedAsync()
         {
             await LoadBrands();
@@ -19,7 +21,18 @@ namespace Wilcommerce.Web.Admin.Catalog.Pages
 
         async Task LoadBrands(BrandListQueryModel queryModel = null)
         {
-            brands = await Client.GetBrands(queryModel);
+            loading = true;
+
+            try
+            {
+                brands = await Client.GetBrands(queryModel);
+            }
+            finally
+            {
+                loading = false;
+            }
         }
+
+        async Task ApplyBrandsFilter(BrandListQueryModel model) => await LoadBrands(model);
     }
 }

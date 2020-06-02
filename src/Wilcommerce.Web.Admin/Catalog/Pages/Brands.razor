@@ -13,7 +13,12 @@
 <hr />
 <div class="row">
     <div class="col">
-        @if (brands == null)
+        <BrandSearchForm OnBrandsFiltered="ApplyBrandsFilter" />
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        @if (brands == null || loading)
         {
             <Loader />
         }

@@ -39,7 +39,11 @@ namespace Wilcommerce.Web.Admin.Services.Http
             var requestContent = new MultipartFormDataContent();
             requestContent.Add(new StringContent(model.Name), "name");
             requestContent.Add(new StringContent(model.Url), "url");
-            requestContent.Add(new StringContent(model.Description), "description");
+            if (!string.IsNullOrWhiteSpace(model.Description))
+            {
+                requestContent.Add(new StringContent(model.Description), "description");
+            }
+
             //requestContent.Add(new ByteArrayContent(imageByteArray), "image", model.Image.FileName);
 
             var response = await Client.PostAsync(url, requestContent);
@@ -66,7 +70,11 @@ namespace Wilcommerce.Web.Admin.Services.Http
             var requestContent = new MultipartFormDataContent();
             requestContent.Add(new StringContent(model.Name), "name");
             requestContent.Add(new StringContent(model.Url), "url");
-            requestContent.Add(new StringContent(model.Description), "description");
+            if (!string.IsNullOrWhiteSpace(model.Description))
+            {
+                requestContent.Add(new StringContent(model.Description), "description");
+            }
+            
             //requestContent.Add(new ByteArrayContent(imageByteArray), "image", model.Image.FileName);
 
             var response = await Client.PutAsync(url, requestContent);
