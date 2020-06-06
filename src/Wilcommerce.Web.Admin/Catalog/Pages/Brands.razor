@@ -24,7 +24,9 @@
         }
         else
         {
-            <BrandList Brands="brands" />
+            <BrandList Brands="brands"
+                       OnBrandDeleteConfirmed="DeleteBrand"
+                       OnBrandRestoreConfirmed="RestoreBrand"/>
         }
     </div>
 </div>

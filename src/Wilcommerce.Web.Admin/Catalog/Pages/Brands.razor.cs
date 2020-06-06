@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using System;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.Brands;
 using Wilcommerce.Web.Admin.Services.Http;
@@ -34,5 +35,43 @@ namespace Wilcommerce.Web.Admin.Catalog.Pages
         }
 
         async Task ApplyBrandsFilter(BrandListQueryModel model) => await LoadBrands(model);
+
+        async Task DeleteBrand(BrandListModel.ListItem brand)
+        {
+            loading = true;
+
+            try
+            {
+                await Client.DeleteBrand(brand.Id);
+                await LoadBrands();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                loading = false;
+            }
+        }
+
+        async Task RestoreBrand(BrandListModel.ListItem brand)
+        {
+            loading = true;
+
+            try
+            {
+                await Client.RestoreBrand(brand.Id);
+                await LoadBrands();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                loading = false;
+            }
+        }
     }
 }
