@@ -1,1 +1,22 @@
-﻿<h3>CustomAttributeList</h3>
+﻿<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Data type</th>
+            <th>Unit of measure</th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Attributes.Items)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.DataType</td>
+                <td>@item.UnitOfMeasure</td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -12,5 +12,14 @@
 </div>
 <hr />
 <div class="row">
-    <CustomAttributeList />
+    <div class="col">
+        @if (attributes == null || loading)
+        {
+            <Loader />
+        }
+        else
+        {
+            <CustomAttributeList Attributes="attributes" />
+        }
+    </div>
 </div>

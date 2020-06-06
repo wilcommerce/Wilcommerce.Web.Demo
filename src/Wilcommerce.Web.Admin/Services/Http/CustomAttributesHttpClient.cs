@@ -27,7 +27,7 @@ namespace Wilcommerce.Web.Admin.Services.Http
             return customAttributes;
         }
 
-        public async Task<Guid> CreateNewCustomAttribute(CustomAttributeInfoModel model)
+        public async Task CreateNewCustomAttribute(CustomAttributeInfoModel model)
         {
             var url = UrlBuilder.CreateNewCustomAttributeUrl();
 
@@ -36,9 +36,6 @@ namespace Wilcommerce.Web.Admin.Services.Http
             {
                 throw new ApplicationException($"Create new custom attribute call ended with status code {response.StatusCode}");
             }
-
-            string responseBody = await response.Content.ReadAsStringAsync();
-            return Guid.Parse(responseBody);
         }
 
         public async Task<CustomAttributeDetailModel> GetCustomAttributeDetail(Guid attributeId)

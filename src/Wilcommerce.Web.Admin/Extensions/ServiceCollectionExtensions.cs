@@ -1,9 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Wilcommerce.Web.Admin.Services.Http;
 using Wilcommerce.Web.Admin.Services.Url;
 

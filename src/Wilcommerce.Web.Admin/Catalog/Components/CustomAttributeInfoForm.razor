@@ -1,0 +1,45 @@
+﻿<EditForm Context="context" Model="Model" OnValidSubmit="HandleSubmit" class="col-md-12 mt-3">
+    <DataAnnotationsValidator />
+
+    @if (Readonly && !editingEnabled)
+    {
+        <div class="form-group row">
+            <button type="button" class="btn btn-outline-secondary" @onclick="EnableEditing">Edit data</button>
+        </div>
+    }
+
+    <div class="form-group row">
+        <label for="@nameof(Model.Name)">Name</label>
+        <InputText @bind-Value="Model.Name" class="@formControlClass" />
+        <ValidationMessage For="() => Model.Name" />
+    </div>
+    <div class="form-group row">
+        <label for="@nameof(Model.Type)">Type</label>
+        <InputSelect @bind-Value="Model.Type" class="@formControlClass">
+            <option>Choose a data type</option>
+            @foreach (var type in dataTypes)
+            {
+                <option value="@type">@type</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="() => Model.Type" />
+    </div>
+    <div class="form-group row">
+        <label for="@nameof(Model.UnitOfMeasure)">Unit of measure</label>
+        <InputText @bind-Value="Model.UnitOfMeasure" class="@formControlClass" />
+        <ValidationMessage For="() => Model.UnitOfMeasure" />
+    </div>
+    <div class="form-group row">
+        <label for="@nameof(Model.Description)">Description</label>
+        <InputTextArea @bind-Value="Model.Description" class="@formControlClass" />
+        <ValidationMessage For="() => Model.Description" />
+    </div>
+
+    @if (!Readonly || editingEnabled)
+    {
+        <div class="form-group row align-content-end">
+            <button type="reset" class="btn btn-outline-primary mr-3" @onclick="Cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    }
+</EditForm>
