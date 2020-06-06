@@ -80,7 +80,7 @@ namespace Wilcommerce.Web.Admin.Services.Http
             var response = await Client.PutAsync(url, requestContent);
             if (!response.IsSuccessStatusCode)
             {
-                throw new ApplicationException($"Create new brand call ended with status code {response.StatusCode}");
+                throw new ApplicationException($"Update brand {brandId} call ended with status code {response.StatusCode}");
             }
         }
 
@@ -91,7 +91,7 @@ namespace Wilcommerce.Web.Admin.Services.Http
             var response = await Client.PatchAsync(url, JsonContent.Create(seo));
             if (!response.IsSuccessStatusCode)
             {
-                throw new ApplicationException($"Create new brand call ended with status code {response.StatusCode}");
+                throw new ApplicationException($"Update brand {brandId} seo info call ended with status code {response.StatusCode}");
             }
         }
 
@@ -102,7 +102,7 @@ namespace Wilcommerce.Web.Admin.Services.Http
             var response = await Client.DeleteAsync(url);
             if (!response.IsSuccessStatusCode)
             {
-                throw new ApplicationException($"Create new brand call ended with status code {response.StatusCode}");
+                throw new ApplicationException($"Delete brand {brandId} call ended with status code {response.StatusCode}");
             }
         }
 
@@ -113,7 +113,7 @@ namespace Wilcommerce.Web.Admin.Services.Http
             var response = await Client.PatchAsync(url, null);
             if (!response.IsSuccessStatusCode)
             {
-                throw new ApplicationException($"Create new brand call ended with status code {response.StatusCode}");
+                throw new ApplicationException($"Restore brand {brandId} call ended with status code {response.StatusCode}");
             }
         }
     }

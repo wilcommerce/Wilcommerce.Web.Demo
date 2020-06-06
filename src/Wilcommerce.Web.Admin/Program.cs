@@ -29,12 +29,9 @@ namespace Wilcommerce.Web.Admin
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();
 
-            builder.Services.AddSingleton<BrandUrlBuilder>();
-
-            builder.Services.AddHttpClient<BrandsHttpClient>(client =>
-            {
-                client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
-            });
+            builder.Services
+                .AddUrlBuilders()
+                .AddHttpClients(new Uri(builder.HostEnvironment.BaseAddress));
 
             builder.RootComponents.Add<App>("app");
 
