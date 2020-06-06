@@ -13,7 +13,15 @@ namespace Wilcommerce.Web.Admin.Catalog.Pages
 
         private BrandListModel brands;
 
+        private BrandListQueryModel queryModel;
+
         private bool loading;
+
+        public Brands()
+        {
+            queryModel = new BrandListQueryModel();
+            loading = false;
+        }
 
         protected override async Task OnInitializedAsync()
         {
@@ -34,7 +42,13 @@ namespace Wilcommerce.Web.Admin.Catalog.Pages
             }
         }
 
-        async Task ApplyBrandsFilter(BrandListQueryModel model) => await LoadBrands(model);
+        async Task ApplyBrandsFilter(BrandListQueryModel model)
+        {
+            queryModel.ActiveOnly = model.ActiveOnly;
+            queryModel.Query = model.Query;
+
+            await LoadBrands(queryModel);
+        }
 
         async Task DeleteBrand(BrandListModel.ListItem brand)
         {
@@ -43,7 +57,7 @@ namespace Wilcommerce.Web.Admin.Catalog.Pages
             try
             {
                 await Client.DeleteBrand(brand.Id);
-                await LoadBrands();
+                await LoadBrands(queryModel);
             }
             catch (Exception ex)
             {
@@ -62,7 +76,7 @@ namespace Wilcommerce.Web.Admin.Catalog.Pages
             try
             {
                 await Client.RestoreBrand(brand.Id);
-                await LoadBrands();
+                await LoadBrands(queryModel);
             }
             catch (Exception ex)
             {

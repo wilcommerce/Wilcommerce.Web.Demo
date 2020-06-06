@@ -9,22 +9,18 @@ namespace Wilcommerce.Web.Admin.Catalog.Components
         [Parameter]
         public EventCallback<BrandListQueryModel> OnBrandsFiltered { get; set; }
 
-        BrandListQueryModel model;
-
-        public BrandSearchForm()
-        {
-            model = new BrandListQueryModel();
-        }
+        [Parameter]
+        public BrandListQueryModel Model { get; set; }
 
         async Task FilterBrands()
         {
-            await OnBrandsFiltered.InvokeAsync(model);
+            await OnBrandsFiltered.InvokeAsync(Model);
         }
 
         async Task ClearFilters()
         {
-            model = new BrandListQueryModel();
-            await OnBrandsFiltered.InvokeAsync(model);
+            Model = new BrandListQueryModel();
+            await OnBrandsFiltered.InvokeAsync(Model);
         }
     }
 }
