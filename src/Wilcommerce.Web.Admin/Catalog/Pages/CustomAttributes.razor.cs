@@ -10,6 +10,9 @@ namespace Wilcommerce.Web.Admin.Catalog.Pages
         [Inject]
         public CustomAttributesHttpClient Client { get; set; }
 
+        [Inject]
+        public NavigationManager Navigation { get; set; }
+
         private CustomAttributeListModel attributes;
 
         private CustomAttributeListQueryModel queryModel;

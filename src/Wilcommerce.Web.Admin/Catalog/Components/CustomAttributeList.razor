@@ -14,8 +14,25 @@
                 <td>@item.Name</td>
                 <td>@item.DataType</td>
                 <td>@item.UnitOfMeasure</td>
-                <td></td>
-                <td></td>
+                <td class="col-auto">
+                    <button type="button" class="btn btn-outline-primary" @onclick="() => OpenAttributeDetail(item)">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </td>
+                <td class="col-auto">
+                    @if (!item.Deleted)
+                    {
+                        <button type="button" class="btn btn-outline-danger">
+                            <i class="far fa-trash-alt"></i> Delete
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-outline-primary">
+                            <i class="fas fa-undo-alt"></i> Restore
+                        </button>
+                    }
+                </td>
             </tr>
         }
     </tbody>

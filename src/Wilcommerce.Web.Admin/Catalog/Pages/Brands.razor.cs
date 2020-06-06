@@ -11,6 +11,9 @@ namespace Wilcommerce.Web.Admin.Catalog.Pages
         [Inject]
         public BrandsHttpClient Client { get; set; }
 
+        [Inject]
+        public NavigationManager Navigation { get; set; }
+
         private BrandListModel brands;
 
         private BrandListQueryModel queryModel;
@@ -48,6 +51,12 @@ namespace Wilcommerce.Web.Admin.Catalog.Pages
             queryModel.Query = model.Query;
 
             await LoadBrands(queryModel);
+        }
+
+        void OpenBrandDetail(BrandListModel.ListItem brand)
+        {
+            var url = $"catalog/brands/{brand.Id}";
+            Navigation.NavigateTo(url);
         }
 
         async Task DeleteBrand(BrandListModel.ListItem brand)

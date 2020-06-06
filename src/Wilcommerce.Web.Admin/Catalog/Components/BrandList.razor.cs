@@ -7,11 +7,11 @@ namespace Wilcommerce.Web.Admin.Catalog.Components
 {
     public partial class BrandList
     {
-        [Inject]
-        public NavigationManager Navigation { get; set; }
-
         [Parameter]
         public BrandListModel Brands { get; set; }
+
+        [Parameter]
+        public EventCallback<BrandListModel.ListItem> OnBrandDetailOpened { get; set; }
 
         [Parameter]
         public EventCallback<BrandListModel.ListItem> OnBrandDeleteConfirmed { get; set; }
@@ -25,11 +25,7 @@ namespace Wilcommerce.Web.Admin.Catalog.Components
 
         private BrandListModel.ListItem selectedBrand;
 
-        void OpenBrandDetail(BrandListModel.ListItem item)
-        {
-            var url = $"catalog/brands/{item.Id}";
-            Navigation.NavigateTo(url);
-        }
+        async Task OpenBrandDetail(BrandListModel.ListItem item) => await OnBrandDetailOpened.InvokeAsync(item);
 
         void DeleteBrand(BrandListModel.ListItem item)
         {

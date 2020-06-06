@@ -9,10 +9,18 @@ namespace Wilcommerce.Web.Admin.Catalog.Components
 {
     public partial class CustomAttributeList
     {
-        [Inject]
-        public NavigationManager Navigation { get; set; }
-
         [Parameter]
         public CustomAttributeListModel Attributes { get; set; }
+
+        [Parameter]
+        public EventCallback<CustomAttributeListModel.ListItem> OnAttributeDetailOpened { get; set; }
+
+        [Parameter]
+        public EventCallback<CustomAttributeListModel.ListItem> OnAttributeDeleteConfirmed { get; set; }
+
+        [Parameter]
+        public EventCallback<CustomAttributeListModel.ListItem> OnAttributeRestoreConfirmed { get; set; }
+
+        async Task OpenAttributeDetail(CustomAttributeListModel.ListItem attribute) => await OnAttributeDetailOpened.InvokeAsync(attribute);
     }
 }
