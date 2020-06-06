@@ -38,7 +38,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             var brandId = await ControllerServices.CreateNewBrand(model);
             _logger.LogInformation($"New brand created with id {brandId}");
 
-            return CreatedAtAction(nameof(Get), new { id = brandId }, model);
+            return CreatedAtAction(nameof(Get), new { id = brandId }, brandId);
         }
 
         [HttpGet("{id}")]
