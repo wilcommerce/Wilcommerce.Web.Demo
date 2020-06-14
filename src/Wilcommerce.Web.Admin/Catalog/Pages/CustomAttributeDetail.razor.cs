@@ -20,9 +20,23 @@ namespace Wilcommerce.Web.Admin.Catalog.Pages
 
         CustomAttributeDetailModel customAttribute;
 
+        private bool errorRaised;
+
         protected override async Task OnInitializedAsync()
         {
             customAttribute = await Client.GetCustomAttributeDetail(_AttributeId);
+        }
+
+        async Task UpdateCustomAttribute(CustomAttributeInfoModel model)
+        {
+            try
+            {
+                await Client.UpdateCustomAttribute(_AttributeId, model);
+            }
+            catch
+            {
+                errorRaised = true;
+            }
         }
     }
 }
