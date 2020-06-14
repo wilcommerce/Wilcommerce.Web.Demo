@@ -17,7 +17,7 @@ namespace Wilcommerce.Web.Admin.Catalog.Pages
 
         Guid _BrandId => Guid.Parse(BrandId);
 
-        private BrandDetailModel brand;
+        BrandDetailModel brand;
 
         private bool errorRaised;
 

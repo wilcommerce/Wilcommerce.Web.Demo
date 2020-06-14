@@ -1,0 +1,20 @@
+﻿@page "/catalog/customattributes/{attributeId}"
+
+@if (customAttribute == null)
+{
+    <Loader />
+}
+else
+{
+    <div class="row">
+        <div class="col">
+            <h3>@customAttribute?.Details.Name</h3>
+        </div>
+        <div class="col-auto align-content-center">
+            <a href="catalog/customattributes" class="btn btn-primary">
+                <i class="fas fa-chevron-circle-left"></i> Back to list
+            </a>
+        </div>
+    </div>
+    <hr />
+}

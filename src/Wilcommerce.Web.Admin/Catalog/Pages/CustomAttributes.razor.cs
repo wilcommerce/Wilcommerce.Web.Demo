@@ -43,5 +43,11 @@ namespace Wilcommerce.Web.Admin.Catalog.Pages
                 loading = false;
             }
         }
+
+        void OpenAttributeDetail(CustomAttributeListModel.ListItem attribute)
+        {
+            var url = $"catalog/customattributes/{attribute.Id}";
+            Navigation.NavigateTo(url);
+        }
     }
 }
