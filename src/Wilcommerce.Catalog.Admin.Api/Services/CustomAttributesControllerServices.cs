@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.CustomAttributes;
@@ -88,7 +89,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
                     Name = customAttribute.Name,
                     Type = customAttribute.DataType,
                     UnitOfMeasure = customAttribute.UnitOfMeasure,
-                    Values = customAttribute.Values.ToList()
+                    Values = customAttribute.Values?.ToList() ?? new List<object>()
                 }
             };
         }
