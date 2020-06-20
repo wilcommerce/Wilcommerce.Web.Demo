@@ -1,17 +1,9 @@
 using System;
-using System.Net.Http;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Text;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
-using Wilcommerce.Web.Admin.Services.Http;
-using Wilcommerce.Web.Admin.Services.Url;
 
 namespace Wilcommerce.Web.Admin
 {
@@ -31,7 +23,7 @@ namespace Wilcommerce.Web.Admin
 
             builder.Services
                 .AddUrlBuilders()
-                .AddHttpClients(new Uri(builder.HostEnvironment.BaseAddress));
+                .AddCatalogHttpClients(new Uri(builder.HostEnvironment.BaseAddress));
 
             builder.RootComponents.Add<App>("app");
 

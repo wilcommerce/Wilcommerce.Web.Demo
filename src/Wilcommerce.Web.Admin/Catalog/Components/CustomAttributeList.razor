@@ -22,13 +22,13 @@
                 <td class="col-auto">
                     @if (!item.Deleted)
                     {
-                        <button type="button" class="btn btn-outline-danger">
+                        <button type="button" class="btn btn-outline-danger" @onclick="() => DeleteAttribute(item)">
                             <i class="far fa-trash-alt"></i> Delete
                         </button>
                     }
                     else
                     {
-                        <button type="button" class="btn btn-outline-primary">
+                        <button type="button" class="btn btn-outline-primary" @onclick="() => RestoreAttribute(item)">
                             <i class="fas fa-undo-alt"></i> Restore
                         </button>
                     }
@@ -37,3 +37,37 @@
         }
     </tbody>
 </table>
+
+<Modal @ref="confirmDeleteModal">
+    <ModalBackdrop />
+    <ModalContent Size="ModalSize.Default">
+        <ModalHeader>
+            <ModalTitle>Delete Brand @selectedAttribute?.Name</ModalTitle>
+            <CloseButton @onclick="() => CloseModal(confirmDeleteModal)" />
+        </ModalHeader>
+        <ModalBody>
+            <h6>You are going to delete the brand @selectedAttribute?.Name. Are you sure?</h6>
+        </ModalBody>
+        <ModalFooter>
+            <button type="button" class="btn btn-outline-secondary" @onclick="() => CloseModal(confirmDeleteModal)">No</button>
+            <button type="button" class="btn btn-primary" @onclick="ConfirmDeleteAttribute">Yes!</button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
+
+<Modal @ref="confirmRestoreModal">
+    <ModalBackdrop />
+    <ModalContent Size="ModalSize.Default">
+        <ModalHeader>
+            <ModalTitle>Restore Brand @selectedAttribute?.Name</ModalTitle>
+            <CloseButton @onclick="() => CloseModal(confirmRestoreModal)" />
+        </ModalHeader>
+        <ModalBody>
+            <h6>You are going to restore the brand @selectedAttribute?.Name. Are you sure?</h6>
+        </ModalBody>
+        <ModalFooter>
+            <button type="button" class="btn btn-outline-secondary" @onclick="() => CloseModal(confirmRestoreModal)">No</button>
+            <button type="button" class="btn btn-primary" @onclick="ConfirmRestoreAttribute">Yes!</button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>

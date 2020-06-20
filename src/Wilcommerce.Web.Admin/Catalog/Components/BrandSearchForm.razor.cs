@@ -12,10 +12,7 @@ namespace Wilcommerce.Web.Admin.Catalog.Components
         [Parameter]
         public BrandListQueryModel Model { get; set; }
 
-        async Task FilterBrands()
-        {
-            await OnBrandsFiltered.InvokeAsync(Model);
-        }
+        async Task FilterBrands() => await OnBrandsFiltered.InvokeAsync(Model);
 
         async Task ClearFilters()
         {

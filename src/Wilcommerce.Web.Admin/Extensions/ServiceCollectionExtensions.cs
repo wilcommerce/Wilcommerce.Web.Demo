@@ -24,7 +24,7 @@ namespace Wilcommerce.Web.Admin
             return services;
         }
 
-        public static IServiceCollection AddHttpClients(this IServiceCollection services, Uri baseAddress)
+        public static IServiceCollection AddCatalogHttpClients(this IServiceCollection services, Uri baseAddress)
         {
             if (services is null)
             {

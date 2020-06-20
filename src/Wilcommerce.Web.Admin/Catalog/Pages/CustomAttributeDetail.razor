@@ -28,19 +28,19 @@ else
             </div>
         </div>
     }
-<div class="row">
-    <div class="col">
-        <Tabs SelectedTab="generalInfo">
-            <Items>
-                <Tab Name="generalInfo">General Info</Tab>
-            </Items>
-            <Content>
-                <TabPanel Name="generalInfo">
-                    <CustomAttributeInfoForm Model="customAttribute.Details"
-                                             OnModelSaved="UpdateCustomAttribute" />
-                </TabPanel>
-            </Content>
-        </Tabs>
+    <div class="row">
+        <div class="col">
+            <Tabs SelectedTab="generalInfo">
+                <Items>
+                    <Tab Name="generalInfo">General Info</Tab>
+                </Items>
+                <Content>
+                    <TabPanel Name="generalInfo">
+                        <CustomAttributeInfoForm Model="customAttribute.Details"
+                                                 OnModelSaved="UpdateCustomAttribute" />
+                    </TabPanel>
+                </Content>
+            </Tabs>
+        </div>
     </div>
-</div>
 }
