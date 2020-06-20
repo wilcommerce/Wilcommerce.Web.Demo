@@ -1,0 +1,21 @@
+﻿<div class="row mb-2">
+    <div class="col mr-2">
+        <input type="text" @bind="Model.Query" placeholder="Search custom attributes" class="form-control" />
+    </div>
+    <div class="col-auto mr-2">
+        <input class="form-check-input" type="checkbox" @bind="Model.ActiveOnly" />
+        <label class="form-check-label" for="inlineFormCheck">
+            Active only
+        </label>
+    </div>
+    <div class="col-auto">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary" @onclick="FilterAttributes">
+                <i class="fas fa-search"></i> Search
+            </button>
+            <button type="button" class="btn btn-outline-secondary" @onclick="ClearFilters" title="Clear all filters">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+</div>

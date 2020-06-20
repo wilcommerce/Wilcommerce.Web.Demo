@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
+using Wilcommerce.Catalog.Admin.UI.Blazor;
 
 namespace Wilcommerce.Web.Admin
 {
@@ -22,7 +23,7 @@ namespace Wilcommerce.Web.Admin
                 .AddFontAwesomeIcons();
 
             builder.Services
-                .AddUrlBuilders()
+                .AddCatalogUrlBuilders()
                 .AddCatalogHttpClients(new Uri(builder.HostEnvironment.BaseAddress));
 
             builder.RootComponents.Add<App>("app");
