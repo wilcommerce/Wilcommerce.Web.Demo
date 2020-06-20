@@ -19,7 +19,8 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor
 
             services
                 .AddSingleton<BrandUrlBuilder>()
-                .AddSingleton<CustomAttributeUrlBuilder>();
+                .AddSingleton<CustomAttributeUrlBuilder>()
+                .AddSingleton<CategoryUrlBuilder>();
 
             return services;
         }
@@ -38,6 +39,7 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor
 
             services.AddHttpClient<BrandsHttpClient>(client => _configureHttpClient(client, baseAddress));
             services.AddHttpClient<CustomAttributesHttpClient>(client => _configureHttpClient(client, baseAddress));
+            services.AddHttpClient<CategoriesHttpClient>(client => _configureHttpClient(client, baseAddress));
 
             return services;
         }
