@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.Brands;
@@ -34,8 +36,6 @@ namespace Wilcommerce.Web.Admin.Services.Http
         {
             var url = UrlBuilder.CreateNewBrandUrl();
 
-            //var imageByteArray = model.Image.ToByteArray();
-
             var requestContent = new MultipartFormDataContent();
             requestContent.Add(new StringContent(model.Name), "name");
             requestContent.Add(new StringContent(model.Url), "url");
@@ -43,8 +43,13 @@ namespace Wilcommerce.Web.Admin.Services.Http
             {
                 requestContent.Add(new StringContent(model.Description), "description");
             }
+            if (model.Image != null)
+            {
+                var imageContent = new ByteArrayContent(model.Image.ToByteArray());
+                imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse(model.Image.ContentType);
 
-            //requestContent.Add(new ByteArrayContent(imageByteArray), "image", model.Image.FileName);
+                requestContent.Add(imageContent, "image", model.Image.FileName);
+            }
 
             var response = await Client.PostAsync(url, requestContent);
             if (!response.IsSuccessStatusCode)
@@ -65,8 +70,6 @@ namespace Wilcommerce.Web.Admin.Services.Http
         {
             var url = UrlBuilder.UpdateBrandInfoUrl(brandId);
 
-            //var imageByteArray = model.Image.ToByteArray();
-
             var requestContent = new MultipartFormDataContent();
             requestContent.Add(new StringContent(model.Name), "name");
             requestContent.Add(new StringContent(model.Url), "url");
@@ -74,8 +77,13 @@ namespace Wilcommerce.Web.Admin.Services.Http
             {
                 requestContent.Add(new StringContent(model.Description), "description");
             }
-            
-            //requestContent.Add(new ByteArrayContent(imageByteArray), "image", model.Image.FileName);
+            if (model.Image != null)
+            {
+                var imageContent = new ByteArrayContent(model.Image.ToByteArray());
+                imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse(model.Image.ContentType);
+
+                requestContent.Add(imageContent, "image", model.Image.FileName);
+            }
 
             var response = await Client.PutAsync(url, requestContent);
             if (!response.IsSuccessStatusCode)

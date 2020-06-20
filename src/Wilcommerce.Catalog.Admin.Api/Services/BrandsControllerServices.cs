@@ -67,7 +67,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
 
         public async Task<Guid> CreateNewBrand(BrandInfoModel model)
         {
-            var brandLogo = new Image();
+            var brandLogo = new Image { Data = new byte[0] };
             if (model.Image != null && model.Image.Length > 0)
             {
                 brandLogo = new Image
@@ -106,7 +106,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
 
         public async Task UpdateBrandInfo(Guid brandId, BrandInfoModel model)
         {
-            var brandLogo = new Image();
+            var brandLogo = new Image { Data = new byte[0] };
             if (model.Image != null && model.Image.Length > 0)
             {
                 brandLogo = new Image

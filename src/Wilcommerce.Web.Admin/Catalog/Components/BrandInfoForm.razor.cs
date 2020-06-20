@@ -74,7 +74,7 @@ namespace Wilcommerce.Web.Admin.Catalog.Components
                 var file = e.Files.FirstOrDefault();
                 if (file != null)
                 {
-                    using var stream = new MemoryStream();
+                    var stream = new MemoryStream();
                     await file.WriteToStreamAsync(stream);
 
                     Model.Image = new FormFile(stream, 0, stream.Length, null, file.Name)
