@@ -1,6 +1,6 @@
-﻿namespace Wilcommerce.Catalog.Admin.Models.Brands
+﻿namespace Wilcommerce.Catalog.Admin.Models.Categories
 {
-    public class BrandListQueryModel
+    public class CategoryListQueryModel
     {
         public bool ActiveOnly { get; set; }
 
@@ -10,9 +10,12 @@
 
         public string Query { get; set; }
 
-        public BrandListQueryModel()
+        public bool VisibleOnly { get; set; }
+
+        public CategoryListQueryModel()
         {
             ActiveOnly = true;
+            VisibleOnly = true;
             Page = 1;
             Size = 20;
         }
