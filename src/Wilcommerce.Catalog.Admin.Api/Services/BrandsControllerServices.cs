@@ -124,5 +124,14 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
         public async Task DeleteBrand(Guid brandId) => await Commands.DeleteBrand(brandId);
 
         public async Task RestoreBrand(Guid brandId) => await Commands.RestoreBrand(brandId);
+
+        public Image GetBrandLogo(Guid brandId)
+        {
+            var logo = Database.Brands
+                .SingleOrDefault(b => b.Id == brandId)?
+                .Logo;
+
+            return logo;
+        }
     }
 }

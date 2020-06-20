@@ -20,5 +20,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
         Task DeleteBrand(Guid brandId);
         
         Task RestoreBrand(Guid brandId);
+        
+        Image GetBrandLogo(Guid brandId);
     }
 }

@@ -1,15 +1,19 @@
 ﻿<table class="table table-striped">
     <thead>
         <tr>
+            <th>&nbsp;</th>
             <th>Name</th>
             <th>Url</th>
-            <th colspan="2"></th>
+            <th colspan="2">&nbsp;</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var brand in Brands.Items)
         {
             <tr>
+                <td>
+                    <img style="width:auto; height:50px;" src="/api/admin/catalog/brands/@brand.Id/logo" />
+                </td>
                 <td>@brand.Name</td>
                 <td>@brand.Url</td>
                 <td class="col-auto">

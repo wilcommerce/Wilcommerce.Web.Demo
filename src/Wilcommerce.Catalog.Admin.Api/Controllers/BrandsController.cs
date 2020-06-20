@@ -56,6 +56,23 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             return Ok(model);
         }
 
+        [HttpGet("{id}/logo")]
+        public IActionResult GetLogo(Guid id)
+        {
+            if (id == Guid.Empty)
+            {
+                return BadRequest();
+            }
+
+            var logo = ControllerServices.GetBrandLogo(id);
+            if (logo == null)
+            {
+                return NoContent();
+            }
+
+            return File(logo.Data, logo.MimeType);
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(Guid id, [FromForm]BrandInfoModel model)
         {
