@@ -31,9 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Catalog.Admin.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Web.AspNetCore", "src\Wilcommerce.Web.AspNetCore\Wilcommerce.Web.AspNetCore.csproj", "{0D9E9B1C-A6BE-485E-AE5A-995294764B8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilcommerce.Catalog.Admin.UI.Blazor", "src\Wilcommerce.Catalog.Admin.UI.Blazor\Wilcommerce.Catalog.Admin.UI.Blazor.csproj", "{061BB8AF-16E4-4AAC-86AB-62CD84BD11F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Catalog.Admin.UI.Blazor", "src\Wilcommerce.Catalog.Admin.UI.Blazor\Wilcommerce.Catalog.Admin.UI.Blazor.csproj", "{061BB8AF-16E4-4AAC-86AB-62CD84BD11F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilcommerce.Core.Admin.UI.Blazor", "src\Wilcommerce.Core.Admin.UI.Blazor\Wilcommerce.Core.Admin.UI.Blazor.csproj", "{88944706-56A9-4FF0-84C2-9F62AFEBEBB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Core.Admin.UI.Blazor", "src\Wilcommerce.Core.Admin.UI.Blazor\Wilcommerce.Core.Admin.UI.Blazor.csproj", "{88944706-56A9-4FF0-84C2-9F62AFEBEBB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

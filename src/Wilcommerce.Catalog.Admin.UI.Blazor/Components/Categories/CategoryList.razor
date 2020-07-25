@@ -1,0 +1,58 @@
+﻿<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Url</th>
+            <th>Visible</th>
+            <th colspan="2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Categories.Items)
+        {
+            <tr>
+                <td>@category.Code</td>
+                <td>@category.Name</td>
+                <td>@category.Url</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<Modal @ref="confirmDeleteModal">
+    <ModalBackdrop />
+    <ModalContent Size="ModalSize.Default">
+        <ModalHeader>
+            <ModalTitle>Delete Category @selectedCategory?.Name</ModalTitle>
+            <CloseButton @onclick="() => CloseModal(confirmDeleteModal)" />
+        </ModalHeader>
+        <ModalBody>
+            <h6>You are going to delete the category @selectedCategory?.Name. Are you sure?</h6>
+        </ModalBody>
+        <ModalFooter>
+            <button type="button" class="btn btn-outline-secondary" @onclick="() => CloseModal(confirmDeleteModal)">No</button>
+            <button type="button" class="btn btn-primary" @onclick="ConfirmDeleteCategory">Yes!</button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>
+
+<Modal @ref="confirmRestoreModal">
+    <ModalBackdrop />
+    <ModalContent Size="ModalSize.Default">
+        <ModalHeader>
+            <ModalTitle>Restore Category @selectedCategory?.Name</ModalTitle>
+            <CloseButton @onclick="() => CloseModal(confirmRestoreModal)" />
+        </ModalHeader>
+        <ModalBody>
+            <h6>You are going to restore the category @selectedCategory?.Name. Are you sure?</h6>
+        </ModalBody>
+        <ModalFooter>
+            <button type="button" class="btn btn-outline-secondary" @onclick="() => CloseModal(confirmRestoreModal)">No</button>
+            <button type="button" class="btn btn-primary" @onclick="ConfirmRestoreCategory">Yes!</button>
+        </ModalFooter>
+    </ModalContent>
+</Modal>

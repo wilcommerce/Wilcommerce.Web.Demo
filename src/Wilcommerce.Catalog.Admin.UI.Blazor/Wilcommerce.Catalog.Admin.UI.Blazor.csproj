@@ -24,10 +24,4 @@
     <ProjectReference Include="..\Wilcommerce.Web.AspNetCore\Wilcommerce.Web.AspNetCore.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Components\Categories\" />
-    <Folder Include="Pages\Categories\" />
-  </ItemGroup>
-
 </Project>
