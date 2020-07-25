@@ -15,9 +15,36 @@
                 <td>@category.Code</td>
                 <td>@category.Name</td>
                 <td>@category.Url</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td>
+                    @if (category.IsVisible)
+                    {
+                        <i class="fas fa-check" style="color:green;"></i>
+                        <span>@category.VisibleFrom?.ToShortDateString() - @category.VisibleTo?.ToShortDateString()</span>
+                    }
+                    else
+                    {
+                        <i class="fas fa-times" style="color:red;"></i>
+                    }
+                </td>
+                <td class="col-auto">
+                    <button type="button" class="btn btn-outline-primary" @onclick="() => OpenCategoryDetail(category)">
+                        <i class="fas fa-edit"></i> Edit
+                    </button>
+                </td>
+                <td>
+                    @if (!category.Deleted)
+                    {
+                        <button type="button" class="btn btn-outline-danger" @onclick="() => DeleteCategory(category)">
+                            <i class="far fa-trash-alt"></i> Delete
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-outline-primary" @onclick="() => RestoreCategory(category)">
+                            <i class="fas fa-undo-alt"></i> Restore
+                        </button>
+                    }
+                </td>
             </tr>
         }
     </tbody>

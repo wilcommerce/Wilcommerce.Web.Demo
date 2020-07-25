@@ -30,7 +30,16 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Categories
             await LoadCategories();
         }
 
-        async Task LoadCategories()
+        async Task ApplyCategoriesFilter(CategoryListQueryModel model)
+        {
+            queryModel.ActiveOnly = model.ActiveOnly;
+            queryModel.Query = model.Query;
+            queryModel.VisibleOnly = model.VisibleOnly;
+
+            await LoadCategories(queryModel);
+        }
+
+        async Task LoadCategories(CategoryListQueryModel queryModel = null)
         {
             loading = true;
 
