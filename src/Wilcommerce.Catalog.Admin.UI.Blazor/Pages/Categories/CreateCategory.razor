@@ -1,0 +1,39 @@
+﻿@page "/catalog/categories/create"
+
+<div class="row">
+    <div class="col">
+        <h3>Create new Category</h3>
+    </div>
+    <div class="col-auto align-content-center">
+        <a href="catalog/categories" class="btn btn-primary">
+            <i class="fas fa-chevron-circle-left"></i> Back to list
+        </a>
+    </div>
+</div>
+<hr />
+@if (errorRaised)
+{
+    <div class="row">
+        <div class="col">
+            <Alert Color="Color.Danger">
+                <AlertMessage>Error saving the new category, please retry</AlertMessage>
+            </Alert>
+            <CloseButton />
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col">
+        <Tabs SelectedTab="generalInfo">
+            <Items>
+                <Tab Name="generalInfo">General Info</Tab>
+            </Items>
+            <Content>
+                <TabPanel Name="generalInfo">
+                    <CategoryInfoForm Model="model"
+                                      OnModelSaved="CreateNewCategory" />
+                </TabPanel>
+            </Content>
+        </Tabs>
+    </div>
+</div>

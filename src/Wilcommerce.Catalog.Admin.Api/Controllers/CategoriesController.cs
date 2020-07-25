@@ -36,7 +36,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         public IActionResult Get(Guid id)
         {
             var model = ControllerServices.GetCategoryDetail(id);
-            return NotFound();
+            return Ok(model);
         }
 
         [HttpPost]
