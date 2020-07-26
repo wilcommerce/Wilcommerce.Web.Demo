@@ -22,9 +22,20 @@ namespace Wilcommerce.Core.Admin.UI.Blazor.Components
 
         string formControlClass => editingEnabled ? "form-control" : "form-control-plaintext";
 
+        private SeoData _originalModel;
+
         protected override Task OnInitializedAsync()
         {
             context = new EditContext(Model);
+            editingEnabled = !Readonly;
+
+            _originalModel = new SeoData
+            {
+                Title = Model.Title,
+                Description = Model.Description,
+                Keywords = Model.Keywords
+            };
+
             return base.OnInitializedAsync();
         }
 
@@ -34,5 +45,22 @@ namespace Wilcommerce.Core.Admin.UI.Blazor.Components
         }
 
         void EnableEditing() => editingEnabled = true;
+
+        void Cancel()
+        {
+            Model = new SeoData
+            {
+                Title = _originalModel.Title,
+                Description = _originalModel.Description,
+                Keywords = _originalModel.Keywords
+            };
+
+            if (Readonly)
+            {
+                editingEnabled = false;
+            }
+
+            StateHasChanged();
+        }
     }
 }

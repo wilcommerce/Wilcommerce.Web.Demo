@@ -29,6 +29,17 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Components.Categories
             context = new EditContext(Model);
             editingEnabled = !Readonly;
 
+            _originalModel = new CategoryInfoModel
+            {
+                Code = Model.Code,
+                Description = Model.Description,
+                IsVisible = Model.IsVisible,
+                Name = Model.Name,
+                Url = Model.Url,
+                VisibleFrom = Model.VisibleFrom,
+                VisibleTo = Model.VisibleTo
+            };
+
             return base.OnInitializedAsync();
         }
 
@@ -36,7 +47,25 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Components.Categories
 
         void Cancel()
         {
+            Model = new CategoryInfoModel
+            {
+                Code = _originalModel.Code,
+                Description = _originalModel.Description,
+                IsVisible = _originalModel.IsVisible,
+                Name = _originalModel.Name,
+                Url = _originalModel.Url,
+                VisibleFrom = _originalModel.VisibleFrom,
+                VisibleTo = _originalModel.VisibleTo
+            };
 
+            if (Readonly)
+            {
+                editingEnabled = false;
+            }
+
+            StateHasChanged();
         }
+
+        void EnableEditing() => editingEnabled = true;
     }
 }

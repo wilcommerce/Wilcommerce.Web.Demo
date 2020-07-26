@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using System;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.Categories;
 using Wilcommerce.Catalog.Admin.UI.Blazor.Services.Http;
@@ -46,6 +47,50 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Categories
             try
             {
                 categories = await Client.GetCategories(queryModel);
+            }
+            finally
+            {
+                loading = false;
+            }
+        }
+
+        void OpenCategoryDetail(CategoryListModel.ListItem category)
+        {
+            var url = $"catalog/categories/{category.Id}";
+            Navigation.NavigateTo(url);
+        }
+
+        async Task DeleteCategory(CategoryListModel.ListItem category)
+        {
+            loading = true;
+
+            try
+            {
+                await Client.DeleteCategory(category.Id);
+                await LoadCategories(queryModel);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                loading = false;
+            }
+        }
+
+        async Task RestoreCategory(CategoryListModel.ListItem category)
+        {
+            loading = true;
+
+            try
+            {
+                await Client.RestoreCategory(category.Id);
+                await LoadCategories(queryModel);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
             finally
             {

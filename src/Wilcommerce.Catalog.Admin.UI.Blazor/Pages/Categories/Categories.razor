@@ -25,7 +25,10 @@
         }
         else
         {
-            <CategoryList Categories="categories" />
+            <CategoryList Categories="categories"
+                          OnCategoryDetailOpened="OpenCategoryDetail"
+                          OnCategoryDeleteConfirmed="DeleteCategory"
+                          OnCategoryRestoreConfirmed="RestoreCategory"/>
         }
     </div>
 </div>

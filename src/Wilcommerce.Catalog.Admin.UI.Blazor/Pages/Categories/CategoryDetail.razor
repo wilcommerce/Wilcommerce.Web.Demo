@@ -1,0 +1,53 @@
+﻿@page "/catalog/categories/{categoryId}"
+
+@if (category == null)
+{
+    <Loader />
+}
+else
+{
+    <div class="row">
+        <div class="col">
+            <h3>@category?.Details.Name</h3>
+        </div>
+        <div class="col-auto align-content-center">
+            <a href="catalog/categories" class="btn btn-primary">
+                <i class="fas fa-chevron-circle-left"></i> Back to list
+            </a>
+        </div>
+    </div>
+    <hr />
+    @if (errorRaised)
+    {
+        <div class="row">
+            <div class="col">
+                <Alert Color="Color.Danger">
+                    <AlertMessage>Error saving the category, please retry</AlertMessage>
+                </Alert>
+                <CloseButton />
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col">
+            <Tabs SelectedTab="generalInfo">
+                <Items>
+                    <Tab Name="generalInfo">General Info</Tab>
+                    <Tab Name="seo">SEO</Tab>
+                </Items>
+                <Content>
+                    <TabPanel Name="generalInfo">
+                        <CategoryInfoForm Model="category.Details"
+                                          Readonly="true"
+                                          OnModelSaved="UpdateCategoryInfo"/>
+                    </TabPanel>
+                    <TabPanel Name="seo">
+                        <SeoDataForm Model="category.Seo"
+                                     Readonly="true"
+                                     OnModelSaved="UpdateCategorySeoData"/>
+                    </TabPanel>
+                </Content>
+            </Tabs>
+        </div>
+    </div>
+}
