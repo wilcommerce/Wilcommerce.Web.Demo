@@ -6,41 +6,39 @@
 }
 else
 {
-    <div class="row">
-        <div class="col">
-            <h3>@customAttribute?.Details.Name</h3>
-        </div>
-        <div class="col-auto align-content-center">
+    <AdminPage Title="@customAttribute?.Details.Name">
+        <Toolbar>
             <a href="catalog/customattributes" class="btn btn-primary">
                 <i class="fas fa-chevron-circle-left"></i> Back to list
             </a>
-        </div>
-    </div>
-    <hr />
-    @if (errorRaised)
-    {
-        <div class="row">
-            <div class="col">
-                <Alert Color="Color.Danger">
-                    <AlertMessage>Error saving the brand, please retry</AlertMessage>
-                </Alert>
-                <CloseButton />
+        </Toolbar>
+        <PageContent>
+            @if (errorRaised)
+            {
+                <div class="row">
+                    <div class="col">
+                        <Alert Color="Color.Danger">
+                            <AlertMessage>Error saving the brand, please retry</AlertMessage>
+                        </Alert>
+                        <CloseButton />
+                    </div>
+                </div>
+            }
+            <div class="row">
+                <div class="col">
+                    <Tabs SelectedTab="generalInfo">
+                        <Items>
+                            <Tab Name="generalInfo">General Info</Tab>
+                        </Items>
+                        <Content>
+                            <TabPanel Name="generalInfo">
+                                <CustomAttributeInfoForm Model="customAttribute.Details"
+                                                         OnModelSaved="UpdateCustomAttribute" />
+                            </TabPanel>
+                        </Content>
+                    </Tabs>
+                </div>
             </div>
-        </div>
-    }
-    <div class="row">
-        <div class="col">
-            <Tabs SelectedTab="generalInfo">
-                <Items>
-                    <Tab Name="generalInfo">General Info</Tab>
-                </Items>
-                <Content>
-                    <TabPanel Name="generalInfo">
-                        <CustomAttributeInfoForm Model="customAttribute.Details"
-                                                 OnModelSaved="UpdateCustomAttribute" />
-                    </TabPanel>
-                </Content>
-            </Tabs>
-        </div>
-    </div>
+        </PageContent>
+    </AdminPage>
 }

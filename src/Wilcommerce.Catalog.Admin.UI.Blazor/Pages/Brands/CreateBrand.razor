@@ -1,39 +1,37 @@
 ﻿@page "/catalog/brands/create"
 
-<div class="row">
-    <div class="col">
-        <h3>Create new Brand</h3>
-    </div>
-    <div class="col-auto align-content-center">
+<AdminPage Title="Create new Brand">
+    <Toolbar>
         <a href="catalog/brands" class="btn btn-primary">
             <i class="fas fa-chevron-circle-left"></i> Back to list
         </a>
-    </div>
-</div>
-<hr />
-@if (errorRaised)
-{
-    <div class="row">
-        <div class="col">
-            <Alert Color="Color.Danger">
-                <AlertMessage>Error saving the new brand, please retry</AlertMessage>
-            </Alert>
-            <CloseButton />
+    </Toolbar>
+    <PageContent>
+        @if (errorRaised)
+        {
+            <div class="row">
+                <div class="col">
+                    <Alert Color="Color.Danger">
+                        <AlertMessage>Error saving the new brand, please retry</AlertMessage>
+                    </Alert>
+                    <CloseButton />
+                </div>
+            </div>
+        }
+        <div class="row">
+            <div class="col">
+                <Tabs SelectedTab="generalInfo">
+                    <Items>
+                        <Tab Name="generalInfo">General Info</Tab>
+                    </Items>
+                    <Content>
+                        <TabPanel Name="generalInfo">
+                            <BrandInfoForm Model="model"
+                                           OnModelSaved="CreateNewBrand" />
+                        </TabPanel>
+                    </Content>
+                </Tabs>
+            </div>
         </div>
-    </div>
-}
-<div class="row">
-    <div class="col">
-        <Tabs SelectedTab="generalInfo">
-            <Items>
-                <Tab Name="generalInfo">General Info</Tab>
-            </Items>
-            <Content>
-                <TabPanel Name="generalInfo">
-                    <BrandInfoForm Model="model"
-                                   OnModelSaved="CreateNewBrand" />
-                </TabPanel>
-            </Content>
-        </Tabs>
-    </div>
-</div>
+    </PageContent>
+</AdminPage>

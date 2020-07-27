@@ -1,34 +1,32 @@
 ﻿@page "/catalog/customattributes"
 
-<div class="row">
-    <div class="col">
-        <h3>Custom attributes</h3>
-    </div>
-    <div class="col-auto align-content-center">
+<AdminPage Title="Custom attributes">
+    <Toolbar>
         <a href="catalog/customattributes/create" class="btn btn-primary">
             <i class="fas fa-plus-circle"></i> Create new
         </a>
-    </div>
-</div>
-<hr />
-<div class="row">
-    <div class="col">
-        <CustomAttributeSearchForm Model="queryModel"
-                                   OnCustomAttributesFiltered="ApplyAttributesFilter" />
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        @if (attributes == null || loading)
-        {
-            <Loader />
-        }
-        else
-        {
-            <CustomAttributeList Attributes="attributes"
-                                 OnAttributeDetailOpened="OpenAttributeDetail"
-                                 OnAttributeDeleteConfirmed="DeleteAttribute"
-                                 OnAttributeRestoreConfirmed="RestoreAttribute" />
-        }
-    </div>
-</div>
+    </Toolbar>
+    <PageContent>
+        <div class="row">
+            <div class="col">
+                <CustomAttributeSearchForm Model="queryModel"
+                                           OnCustomAttributesFiltered="ApplyAttributesFilter" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                @if (attributes == null || loading)
+                {
+                    <Loader />
+                }
+                else
+                {
+                    <CustomAttributeList Attributes="attributes"
+                                         OnAttributeDetailOpened="OpenAttributeDetail"
+                                         OnAttributeDeleteConfirmed="DeleteAttribute"
+                                         OnAttributeRestoreConfirmed="RestoreAttribute" />
+                }
+            </div>
+        </div>
+    </PageContent>
+</AdminPage>
