@@ -14,17 +14,17 @@
                Disabled="@(!editingEnabled)"
                @bind-Value="Model.Name"/>
     
-    <div class="form-group">
-        <label for="@nameof(Model.Type)">Type</label>
-        <InputSelect @bind-Value="Model.Type" class="@formControlClass">
-            <option>Choose a data type</option>
-            @foreach (var type in dataTypes)
-            {
-                <option value="@type">@type</option>
-            }
-        </InputSelect>
-        <ValidationMessage For="() => Model.Type" />
-    </div>
+    <SelectField TItem="string" 
+                 TValue="string"
+                 Label="Type"
+                 FieldId="@nameof(Model.Type)"
+                 CssClass="@formControlClass"
+                 Disabled="@(!editingEnabled)"
+                 Items="dataTypes"
+                 EmptyText="Choose a data type"
+                 DisplayValue="type => type"
+                 OptionValue="type => type"
+                 @bind-Value="Model.Type"/>
 
     <TextField Label="Unit of measure"
                FieldId="@nameof(Model.UnitOfMeasure)"
