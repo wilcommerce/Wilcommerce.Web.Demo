@@ -8,23 +8,20 @@
         </div>
     }
 
-    <div class="form-group row">
-        <label for="@nameof(Model.Title)">Title</label>
-        <InputText @bind-Value="Model.Title" class="@formControlClass" />
-        <ValidationMessage For="() => Model.Title" />
-    </div>
+    <TextField Label="Title"
+               FieldId="@nameof(Model.Title)"
+               CssClass="@formControlClass"
+               @bind-Value="Model.Title"/>
 
-    <div class="form-group row">
-        <label for="@nameof(Model.Description)">Description</label>
-        <InputText @bind-Value="Model.Description" class="@formControlClass" />
-        <ValidationMessage For="() => Model.Description" />
-    </div>
+    <TextField Label="Description"
+               FieldId="@nameof(Model.Description)"
+               CssClass="@formControlClass"
+               @bind-Value="Model.Description"/>
 
-    <div class="form-group row">
-        <label for="@nameof(Model.Keywords)">Keywords</label>
-        <InputText @bind-Value="Model.Keywords" class="@formControlClass" />
-        <ValidationMessage For="() => Model.Keywords" />
-    </div>
+    <TextField Label="Description"
+               FieldId="@nameof(Model.Keywords)"
+               CssClass="@formControlClass"
+               @bind-Value="Model.Keywords"/>
 
     @if (!Readonly || editingEnabled)
     {
