@@ -3,41 +3,51 @@
 
     @if (Readonly && !editingEnabled)
     {
-        <div class="form-group row">
+        <div class="form-group">
             <button type="button" class="btn btn-outline-secondary" @onclick="EnableEditing">Edit data</button>
         </div>
     }
 
-    <div class="form-group row">
-        <label for="@nameof(Model.Name)">Name</label>
-        <InputText @bind-Value="Model.Name" class="@formControlClass" />
-        <ValidationMessage For="() => Model.Name" />
-    </div>
-    <div class="form-group row">
-        <label for="@nameof(Model.Type)">Type</label>
-        <InputSelect @bind-Value="Model.Type" class="@formControlClass">
-            <option>Choose a data type</option>
-            @foreach (var type in dataTypes)
-            {
-                <option value="@type">@type</option>
-            }
-        </InputSelect>
-        <ValidationMessage For="() => Model.Type" />
-    </div>
-    <div class="form-group row">
-        <label for="@nameof(Model.UnitOfMeasure)">Unit of measure</label>
-        <InputText @bind-Value="Model.UnitOfMeasure" class="@formControlClass" />
-        <ValidationMessage For="() => Model.UnitOfMeasure" />
-    </div>
-    <div class="form-group row">
-        <label for="@nameof(Model.Description)">Description</label>
-        <InputTextArea @bind-Value="Model.Description" class="@formControlClass" />
-        <ValidationMessage For="() => Model.Description" />
-    </div>
+    <TextField Label="Name"
+               FieldId="@nameof(Model.Name)"
+               CssClass="@formControlClass"
+               Disabled="@(!editingEnabled)"
+               @bind-Value="Model.Name"/>
+    
+    <SelectField TItem="string" 
+                 TValue="string"
+                 Label="Type"
+                 FieldId="@nameof(Model.Type)"
+                 CssClass="@formControlClass"
+                 Disabled="@(!editingEnabled)"
+                 Items="dataTypes"
+                 EmptyText="Choose a data type"
+                 DisplayValue="type => type"
+                 OptionValue="type => type"
+                 @bind-Value="Model.Type"/>
+
+    <TextField Label="Unit of measure"
+               FieldId="@nameof(Model.UnitOfMeasure)"
+               CssClass="@formControlClass"
+               Disabled="@(!editingEnabled)"
+               @bind-Value="Model.UnitOfMeasure"/>
+
+    <MultipleValueField TValue="string"
+                        Label="Available Values"
+                        FieldId="@nameof(Model.Values)"
+                        CssClass="@formControlClass"
+                        Disabled="@(!editingEnabled)"
+                        @bind-Value="values"/>
+    
+    <TextAreaField Label="Description"
+                   FieldId="@nameof(Model.Description)"
+                   CssClass="@formControlClass"
+                   Disabled="@(!editingEnabled)"
+                   @bind-Value="Model.Description"/>
 
     @if (!Readonly || editingEnabled)
     {
-        <div class="form-group row align-content-end">
+        <div class="form-group align-content-end">
             <button type="reset" class="btn btn-outline-primary mr-3" @onclick="Cancel">Cancel</button>
             <button type="submit" class="btn btn-primary">Save</button>
         </div>

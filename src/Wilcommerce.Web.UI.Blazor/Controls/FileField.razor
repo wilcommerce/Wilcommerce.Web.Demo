@@ -1,0 +1,50 @@
+﻿<div class="form-group">
+    <label for="@FieldId">@Label</label>
+    <FileEdit Changed="@OnFileChanged" 
+              class="@CssClass" 
+              id="@FieldId"
+              Disabled="Disabled"/>
+    <ValidationMessage For="@ValueExpression"/>
+</div>
+
+@code {
+    [Parameter]
+    public string Label { get; set; }
+
+    [Parameter]
+    public string FieldId { get; set; }
+
+    [Parameter]
+    public string CssClass { get; set; }
+
+    [Parameter]
+    public bool Disabled { get; set; } = false;
+
+    [Parameter]
+    public IFormFile Value { get; set; }
+
+    [Parameter]
+    public EventCallback<IFormFile> ValueChanged { get; set; }
+
+    [Parameter]
+    public Expression<Func<IFormFile>> ValueExpression { get; set; }
+
+    async Task OnFileChanged(FileChangedEventArgs e)
+    {
+        var file = e.Files.FirstOrDefault();
+        if (file != null)
+        {
+            var stream = new MemoryStream();
+            await file.WriteToStreamAsync(stream);
+
+            stream.Position = 0;
+            Value = new FormFile(stream, 0, stream.Length, null, file.Name)
+            {
+                Headers = new HeaderDictionary(),
+                ContentType = file.Type
+            };
+
+            await ValueChanged.InvokeAsync(Value);
+        }
+    }
+}

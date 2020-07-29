@@ -1,0 +1,77 @@
+﻿@typeparam TValue
+
+<div class="form-group">
+    <label for="@FieldId">@Label</label>
+    <div class="input-group mb-3">
+        @if (Value != null && Value.Any())
+        {
+            <div class="input-group-prepend">
+                @foreach (var value in Value)
+                {
+                    <span class="input-group-text">
+                        @value
+                        <button type="button" class="btn btn-sm" style="padding-top:0; padding-bottom:0;" @onclick="() => RemoveValue(value)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </span>
+                }
+            </div>
+        }
+        <input type="text" 
+               @bind="selectedValue"
+               id="@FieldId"
+               class="@CssClass"
+               disabled="@Disabled"/>
+        <div class="input-group-append">
+            <button type="button" class="btn btn-outline-primary" @onclick="AddValue">add</button>
+        </div>
+    </div>
+
+    <ValidationMessage For="@ValueExpression" />
+</div>
+
+@code {
+    [Parameter]
+    public string Label { get; set; }
+
+    [Parameter]
+    public string FieldId { get; set; }
+
+    [Parameter]
+    public IList<TValue> Value { get; set; }
+
+    [Parameter]
+    public string CssClass { get; set; }
+
+    [Parameter]
+    public bool Disabled { get; set; } = false;
+
+    [Parameter]
+    public EventCallback<IList<TValue>> ValueChanged { get; set; }
+
+    [Parameter]
+    public Expression<Func<IList<TValue>>> ValueExpression { get; set; }
+
+    TValue selectedValue;
+
+    async Task AddValue() => await AddValue(selectedValue);
+
+    async Task AddValue(TValue value)
+    {
+        if (!Value.Contains(value))
+        {
+            Value.Add(value);
+            await ValueChanged.InvokeAsync(Value);
+
+            selectedValue = default(TValue);
+        }
+    }
+
+    async Task RemoveValue(TValue value)
+    {
+        if (Value.Remove(value))
+        {
+            await ValueChanged.InvokeAsync(Value);
+        }
+    }
+}

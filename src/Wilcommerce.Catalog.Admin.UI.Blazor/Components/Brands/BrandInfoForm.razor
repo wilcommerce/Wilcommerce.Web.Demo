@@ -3,34 +3,38 @@
 
     @if (Readonly && !editingEnabled)
     {
-        <div class="form-group row">
+        <div class="form-group">
             <button type="button" class="btn btn-outline-secondary" @onclick="EnableEditing">Edit data</button>
         </div>
     }
 
-    <div class="form-group row">
-        <label for="@nameof(Model.Name)">Name</label>
-        <InputText @bind-Value="Model.Name" class="@formControlClass" />
-        <ValidationMessage For="() => Model.Name" />
-    </div>
-    <div class="form-group row">
-        <label for="@nameof(Model.Url)">Url</label>
-        <InputText @bind-Value="Model.Url" class="@formControlClass" />
-        <ValidationMessage For="() => Model.Url" />
-    </div>
-    <div class="form-group row">
-        <label for="@nameof(Model.Image)">Logo</label>
-        <FileEdit Changed="@OnLogoChanged" class="@formControlClass" />
-    </div>
-    <div class="form-group row">
-        <label for="@nameof(Model.Description)">Description</label>
-        <InputTextArea @bind-Value="Model.Description" class="@formControlClass" />
-        <ValidationMessage For="() => Model.Description" />
-    </div>
+    <TextField Label="Name"
+               FieldId="@nameof(Model.Name)"
+               CssClass="@formControlClass"
+               Disabled="@(!editingEnabled)"
+               @bind-Value="Model.Name"/>
+
+    <TextField Label="Url"
+               FieldId="@nameof(Model.Url)"
+               CssClass="@formControlClass"
+               Disabled="@(!editingEnabled)"
+               @bind-Value="Model.Url"/>
+
+    <FileField Label="Logo"
+               FieldId="@nameof(Model.Image)"
+               CssClass="@formControlClass"
+               Disabled="@(!editingEnabled)"
+               @bind-Value="Model.Image"/>
+
+    <TextAreaField Label="Description"
+                   FieldId="@nameof(Model.Description)"
+                   CssClass="@formControlClass"
+                   Disabled="@(!editingEnabled)"
+                   @bind-Value="Model.Description"/>
 
     @if (!Readonly || editingEnabled)
     {
-        <div class="form-group row align-content-end">
+        <div class="form-group align-content-end">
             <button type="reset" class="btn btn-outline-primary mr-3" @onclick="Cancel">Cancel</button>
             <button type="submit" class="btn btn-primary">Save</button>
         </div>

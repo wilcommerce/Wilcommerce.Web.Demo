@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.CustomAttributes;
 
@@ -28,6 +29,8 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Components.CustomAttributes
 
         IEnumerable<string> dataTypes = Enum.GetNames(typeof(CustomAttributeInfoModel.DataTypes));
 
+        IList<string> values = new List<string>();
+
         protected override Task OnInitializedAsync()
         {
             context = new EditContext(Model);
@@ -42,10 +45,16 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Components.CustomAttributes
                 Values = Model.Values
             };
 
+            values = Model.Values.Select(v => v.ToString()).ToList();
+
             return base.OnInitializedAsync();
         }
 
-        async Task HandleSubmit() => await OnModelSaved.InvokeAsync(Model);
+        async Task HandleSubmit()
+        {
+            Model.Values = values.Select(v => (object)v).ToList();
+            await OnModelSaved.InvokeAsync(Model);
+        }
 
         void Cancel()
         {
