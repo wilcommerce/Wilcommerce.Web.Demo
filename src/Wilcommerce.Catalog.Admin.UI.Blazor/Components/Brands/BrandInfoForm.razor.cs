@@ -66,28 +66,5 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Components.Brands
         }
 
         void EnableEditing() => editingEnabled = true;
-
-        async Task OnLogoChanged(FileChangedEventArgs e)
-        {
-            try
-            {
-                var file = e.Files.FirstOrDefault();
-                if (file != null)
-                {
-                    var stream = new MemoryStream();
-                    await file.WriteToStreamAsync(stream);
-
-                    Model.Image = new FormFile(stream, 0, stream.Length, null, file.Name)
-                    {
-                        Headers = new HeaderDictionary(),
-                        ContentType = file.Type
-                    };
-                }
-            }
-            finally
-            {
-                StateHasChanged();
-            }
-        }
     }
 }

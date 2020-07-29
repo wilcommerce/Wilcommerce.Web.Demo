@@ -11,16 +11,19 @@
     <TextField Label="Title"
                FieldId="@nameof(Model.Title)"
                CssClass="@formControlClass"
+               Disabled="@(!editingEnabled)"
                @bind-Value="Model.Title"/>
 
     <TextField Label="Description"
                FieldId="@nameof(Model.Description)"
                CssClass="@formControlClass"
+               Disabled="@(!editingEnabled)"
                @bind-Value="Model.Description"/>
 
     <TextField Label="Description"
                FieldId="@nameof(Model.Keywords)"
                CssClass="@formControlClass"
+               Disabled="@(!editingEnabled)"
                @bind-Value="Model.Keywords"/>
 
     @if (!Readonly || editingEnabled)
