@@ -36,6 +36,10 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Brands
             {
                 errorRaised = true;
             }
+            finally
+            {
+                StateHasChanged();
+            }
         }
 
         async Task UpdateBrandSeoData(SeoData seo)
@@ -47,6 +51,10 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Brands
             catch
             {
                 errorRaised = true;
+            }
+            finally
+            {
+                StateHasChanged();
             }
         }
     }

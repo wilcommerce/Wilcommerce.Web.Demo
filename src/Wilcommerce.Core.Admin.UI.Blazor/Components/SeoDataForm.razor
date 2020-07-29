@@ -3,7 +3,7 @@
 
     @if (Readonly && !editingEnabled)
     {
-        <div class="form-group row">
+        <div class="form-group">
             <button type="button" class="btn btn-outline-secondary" @onclick="EnableEditing">Edit data</button>
         </div>
     }
@@ -28,7 +28,7 @@
 
     @if (!Readonly || editingEnabled)
     {
-        <div class="form-group row align-content-end">
+        <div class="form-group align-content-end">
             <button type="button" class="btn btn-outline-primary mr-3" @onclick="Cancel">Cancel</button>
             <button type="submit" class="btn btn-primary">Save</button>
         </div>

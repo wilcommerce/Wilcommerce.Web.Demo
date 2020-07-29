@@ -50,6 +50,7 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Categories
             }
             finally
             {
+                StateHasChanged();
                 loading = false;
             }
         }
@@ -73,10 +74,6 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Categories
             {
                 Console.WriteLine(ex.Message);
             }
-            finally
-            {
-                loading = false;
-            }
         }
 
         async Task RestoreCategory(CategoryListModel.ListItem category)
@@ -91,10 +88,6 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Categories
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-            }
-            finally
-            {
-                loading = false;
             }
         }
     }

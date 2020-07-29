@@ -35,6 +35,10 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.CustomAttributes
             {
                 errorRaised = true;
             }
+            finally
+            {
+                StateHasChanged();
+            }
         }
     }
 }

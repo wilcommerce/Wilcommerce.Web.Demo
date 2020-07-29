@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using Wilcommerce.Catalog.Admin.Models.Categories;
 using Wilcommerce.Web.AspNetCore.Url;
 
@@ -18,7 +19,7 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Services.Url
                 url = $"{url}?activeOnly={queryModel.ActiveOnly}&page={queryModel.Page}&size={queryModel.Size}&visibleOnly={queryModel.VisibleOnly}";
                 if (!string.IsNullOrWhiteSpace(queryModel.Query))
                 {
-                    url = $"{url}&query={queryModel.Query}";
+                    url = $"{url}&query={HttpUtility.UrlEncode(queryModel.Query)}";
                 }
             }
 
@@ -44,5 +45,7 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Services.Url
         public string DeleteCategoryChildUrl(Guid categoryId, Guid childId) => $"{ApiPrefix}/{ResourceName}/{categoryId}/child/{childId}";
 
         public string DeleteCategoryParentUrl(Guid categoryId, Guid parentId) => $"{ApiPrefix}/{ResourceName}/{categoryId}/parent/{parentId}";
+
+        public string SearchCategoriesByTextUrl(string query) => $"{ApiPrefix}/{ResourceName}/search?query={HttpUtility.UrlEncode(query)}";
     }
 }

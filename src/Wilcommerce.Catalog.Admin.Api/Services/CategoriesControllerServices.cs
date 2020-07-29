@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.Categories;
@@ -109,13 +110,13 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
                     VisibleTo = category.VisibleTo
                 },
                 Seo = category.Seo,
-                Parent = category.Parent is null ? null : new CategoryDetailModel.CategoryDescriptor
+                Parent = category.Parent is null ? new CategoryDescriptorModel() : new CategoryDescriptorModel
                 {
                     Id = category.Parent.Id,
                     Code = category.Parent.Code,
                     Name = category.Parent.Name
                 },
-                Children = category.Children.Select(c => new CategoryDetailModel.CategoryDescriptor
+                Children = category.Children.Select(c => new CategoryDescriptorModel
                 {
                     Id = c.Id,
                     Code = c.Code,
@@ -152,5 +153,22 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
         public async Task RemoveChildFromCategory(Guid categoryId, Guid childId) => await Commands.RemoveChildForCategory(categoryId, childId);
 
         public async Task RemoveParentCategory(Guid categoryId, Guid parentId) => await Commands.RemoveParentForCategory(categoryId, parentId);
+
+        public IEnumerable<CategoryDescriptorModel> SearchCategoriesByText(string query)
+        {
+            var categories = Database.Categories
+                .Active()
+                .Where(c => c.Name.Contains(query) || c.Code.Contains(query) || c.Description.Contains(query))
+                .OrderBy(c => c.Name)
+                .ThenBy(c => c.Code)
+                .Select(c => new CategoryDescriptorModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    Code = c.Code
+                }).ToArray();
+
+            return categories;
+        }
     }
 }

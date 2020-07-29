@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.Categories;
 using Wilcommerce.Core.Common.Models;
@@ -28,5 +29,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
         Task RemoveChildFromCategory(Guid categoryId, Guid childId);
 
         Task RemoveParentCategory(Guid categoryId, Guid parentId);
+
+        IEnumerable<CategoryDescriptorModel> SearchCategoriesByText(string query);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -133,6 +134,14 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Services.Http
             {
                 throw new ApplicationException($"Delete parent {parentId} from category {categoryId} call ended with status code {response.StatusCode}");
             }
+        }
+
+        public async Task<IEnumerable<CategoryDescriptorModel>> SearchCategoriesByText(string query)
+        {
+            var url = UrlBuilder.SearchCategoriesByTextUrl(query);
+
+            var categories = await Client.GetFromJsonAsync<IEnumerable<CategoryDescriptorModel>>(url);
+            return categories;
         }
     }
 }

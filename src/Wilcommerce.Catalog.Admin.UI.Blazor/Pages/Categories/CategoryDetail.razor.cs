@@ -36,6 +36,10 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Categories
             {
                 errorRaised = true;
             }
+            finally
+            {
+                StateHasChanged();
+            }
         }
 
         async Task UpdateCategorySeoData(SeoData seo)
@@ -47,6 +51,10 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Categories
             catch
             {
                 errorRaised = true;
+            }
+            finally
+            {
+                StateHasChanged();
             }
         }
     }

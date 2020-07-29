@@ -12,22 +12,13 @@ namespace Wilcommerce.Catalog.Admin.Models.Categories
 
         public SeoData Seo { get; set; }
 
-        public CategoryDescriptor Parent { get; set; }
+        public CategoryDescriptorModel Parent { get; set; }
 
-        public IList<CategoryDescriptor> Children { get; set; }
+        public IList<CategoryDescriptorModel> Children { get; set; }
 
         public CategoryDetailModel()
         {
-            Children = new List<CategoryDescriptor>();
-        }
-
-        public class CategoryDescriptor
-        {
-            public Guid Id { get; set; }
-
-            public string Code { get; set; }
-
-            public string Name { get; set; }
+            Children = new List<CategoryDescriptorModel>();
         }
     }
 }

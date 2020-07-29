@@ -157,5 +157,17 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             await ControllerServices.RemoveParentCategory(id, parentId);
             return Ok();
         }
+
+        [HttpGet("search")]
+        public IActionResult GetSearch(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return BadRequest(nameof(query));
+            }
+
+            var categories = ControllerServices.SearchCategoriesByText(query);
+            return Ok(categories);
+        }
     }
 }

@@ -41,6 +41,7 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.CustomAttributes
             }
             finally
             {
+                StateHasChanged();
                 loading = false;
             }
         }
@@ -72,10 +73,6 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.CustomAttributes
             {
                 Console.WriteLine(ex);
             }
-            finally
-            {
-                loading = false;
-            }
         }
 
         async Task RestoreAttribute(CustomAttributeListModel.ListItem attribute)
@@ -90,10 +87,6 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.CustomAttributes
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-            }
-            finally
-            {
-                loading = false;
             }
         }
     }

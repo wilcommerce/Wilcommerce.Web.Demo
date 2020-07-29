@@ -30,6 +30,7 @@ else
                         <Items>
                             <Tab Name="generalInfo">General Info</Tab>
                             <Tab Name="seo">SEO</Tab>
+                            <Tab Name="parentAndChildren">Parent & Children</Tab>
                         </Items>
                         <Content>
                             <TabPanel Name="generalInfo">
@@ -41,6 +42,10 @@ else
                                 <SeoDataForm Model="category.Seo"
                                              Readonly="true"
                                              OnModelSaved="UpdateCategorySeoData" />
+                            </TabPanel>
+                            <TabPanel Name="parentAndChildren">
+                                <CategoryRelation ParentCategory="category.Parent"
+                                                  Children="category.Children"/>
                             </TabPanel>
                         </Content>
                     </Tabs>

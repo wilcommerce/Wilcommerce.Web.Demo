@@ -41,6 +41,7 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Brands
             }
             finally
             {
+                StateHasChanged();
                 loading = false;
             }
         }
@@ -72,10 +73,6 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Brands
             {
                 Console.WriteLine(ex);
             }
-            finally
-            {
-                loading = false;
-            }
         }
 
         async Task RestoreBrand(BrandListModel.ListItem brand)
@@ -90,10 +87,6 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Brands
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-            }
-            finally
-            {
-                loading = false;
             }
         }
     }
