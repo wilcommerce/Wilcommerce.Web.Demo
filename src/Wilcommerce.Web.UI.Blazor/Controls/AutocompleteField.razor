@@ -1,20 +1,23 @@
 ﻿@typeparam TItem
-@typeparam TValue
 
 <div class="form-group">
     <label for="@FieldId">@Label</label>
-    <Autocomplete TItem="TItem" 
-                  Data="Items"
-                  TextField="@(item => DisplayValue.Compile().Invoke(item))"
-                  ValueField="@(item => OptionValue.Compile().Invoke(item))"
-                  MinLength="MinimumLength"
-                  SelectedValue="Value"
-                  SelectedValueChanged="OnValueChanged"
-                  SearchChanged="RaiseSerchChanged"
-                  Disabled="Disabled"
-                  id="@FieldId"
-                  Class="@CssClass"/>
-
+    <BlazoredTypeahead TItem="TItem"
+                       TValue="TItem"
+                       Value="Value"
+                       ValueChanged="ValueChanged"
+                       ValueExpression="ValueExpression"
+                       SearchMethod="OnSearch"
+                       MinimumLength="MinimumLength"
+                       Disabled="Disabled">
+        <ResultTemplate>
+            @DisplayValue.Compile().Invoke(context)
+        </ResultTemplate>
+        <SelectedTemplate>
+            @DisplayValue.Compile().Invoke(context)
+        </SelectedTemplate>
+    </BlazoredTypeahead>
+    
     <ValidationMessage For="@ValueExpression" />
 </div>
 
@@ -35,36 +38,20 @@
     public int MinimumLength { get; set; } = 3;
 
     [Parameter]
-    public TValue Value { get; set; }
+    public TItem Value { get; set; }
 
     [Parameter]
-    public EventCallback<TValue> ValueChanged { get; set; }
+    public EventCallback<TItem> ValueChanged { get; set; }
 
     [Parameter]
-    public Expression<Func<TValue>> ValueExpression { get; set; }
+    public Expression<Func<TItem>> ValueExpression { get; set; }
 
     [Parameter]
     public Expression<Func<TItem, string>> DisplayValue { get; set; }
 
     [Parameter]
-    public Expression<Func<TItem, TValue>> OptionValue { get; set; }
-
-    [Parameter]
     public IEnumerable<TItem> Items { get; set; }
 
     [Parameter]
-    public string Placeholder { get; set; }
-
-    [Parameter]
-    public EventCallback<string> OnSearchChanged { get; set; }
-
-    async Task OnValueChanged() => await ValueChanged.InvokeAsync(Value);
-
-    async Task RaiseSerchChanged(string query)
-    {
-        if (query.Length >= MinimumLength)
-        {
-            await OnSearchChanged.InvokeAsync(query);
-        }
-    }
+    public Func<string, Task<IEnumerable<TItem>>> OnSearch { get; set; }
 }

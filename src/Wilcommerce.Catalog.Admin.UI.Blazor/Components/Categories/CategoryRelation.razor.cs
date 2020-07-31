@@ -33,7 +33,7 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Components.Categories
         [Parameter]
         public EventCallback<CategoryDescriptorModel> OnChildRemoved { get; set; }
 
-        private Expression<Func<CategoryDescriptorModel, string>> displayValue = (category) => $"{category.Code} - {category.Name}";
+        private Expression<Func<CategoryDescriptorModel, string>> displayValue = (category) => category.IsEmpty ? "Choose a category" : $"{category.Code} - {category.Name}";
 
         private IEnumerable<CategoryDescriptorModel> categories = new CategoryDescriptorModel[0];
 
@@ -54,10 +54,10 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Components.Categories
             return base.OnInitializedAsync();
         }
 
-        async Task SearchCategories(string query)
+        async Task<IEnumerable<CategoryDescriptorModel>> SearchCategories(string query)
         {
             categories = await Client.SearchCategoriesByText(query);
-            StateHasChanged();
+            return categories;
         }
     }
 }

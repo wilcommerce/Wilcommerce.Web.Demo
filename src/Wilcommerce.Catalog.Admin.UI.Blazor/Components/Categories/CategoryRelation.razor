@@ -1,13 +1,8 @@
 ﻿<EditForm EditContext="context">
     <AutocompleteField TItem="CategoryDescriptorModel"
-                       TValue="CategoryDescriptorModel"
-                       Label="Parent category"
+                       Label="Choose a parent"
                        FieldId="@nameof(ParentCategory)"
-                       Disabled="false"
-                       MinimumLength="3"
-                       @bind-Value="ParentCategory"
-                       OptionValue="category => category"
                        DisplayValue="displayValue"
-                       OnSearchChanged="SearchCategories"
-                       Items="categories" />
+                       OnSearch="query => SearchCategories(query)"
+                       @bind-Value="ParentCategory"/>
 </EditForm>
