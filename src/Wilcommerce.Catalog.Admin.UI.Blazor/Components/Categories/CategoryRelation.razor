@@ -1,8 +1,82 @@
-﻿<EditForm EditContext="context">
-    <AutocompleteField TItem="CategoryDescriptorModel"
-                       Label="Choose a parent"
-                       FieldId="@nameof(ParentCategory)"
-                       DisplayValue="displayValue"
-                       OnSearch="query => SearchCategories(query)"
-                       @bind-Value="ParentCategory"/>
-</EditForm>
+﻿<fieldset class="col-md-12 mt-3">
+    <legend>
+        <span>Parent category</span>
+        @if (Readonly && !parentEditingEnabled)
+        {
+            <button type="button" class="btn btn-outline-secondary" @onclick="EnableParentEditing">Edit data</button>
+        }
+    </legend>
+    <EditForm EditContext="parentContext" OnValidSubmit="SetParentCategory">
+        <AutocompleteField TItem="CategoryDescriptorModel"
+                           Label="Choose a parent"
+                           FieldId="@nameof(ParentCategory)"
+                           DisplayValue="displayValue"
+                           Disabled="@(!parentEditingEnabled)"
+                           OnSearch="query => SearchCategories(query)"
+                           @bind-Value="ParentCategory"/>
+
+        @if (!Readonly || parentEditingEnabled)
+        {
+            <div class="form-group align-content-end">
+                @if (_parentIsEmpty)
+                {
+                    <button type="reset" class="btn btn-outline-primary mr-3" @onclick="CancelParent">Cancel</button>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-outline-danger mr-3" @onclick="RemoveParentCategory">Remove</button>
+                }
+
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        }
+    </EditForm>
+</fieldset>
+
+<fieldset class="col-md-12 mt-3">
+    <legend>
+        <span>Children</span>
+        @if (Readonly && !childrenEditingEnabled)
+        {
+            <button type="button" class="btn btn-outline-secondary" @onclick="EnableChildrenEditing">Edit data</button>
+        }
+    </legend>
+    <EditForm EditContext="childrenContext" OnValidSubmit="AddChild">
+        <AutocompleteField TItem="CategoryDescriptorModel"
+                           Label="Choose a child"
+                           FieldId="@nameof(_child)"
+                           DisplayValue="displayValue"
+                           Disabled="@(!childrenEditingEnabled)"
+                           OnSearch="query => SearchCategories(query)"
+                           @bind-Value="_child" />
+
+        @if (!Readonly || childrenEditingEnabled)
+        {
+            <div class="form-group align-content-end">
+                <button type="reset" class="btn btn-outline-primary mr-3" @onclick="CancelChild">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        }
+    </EditForm>
+    @if (Children != null && Children.Any())
+    {
+        <hr />
+        <div class="row">
+            @foreach (var child in Children)
+            {
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@child.Name</h5>
+                            <p class="card-text">
+                                <strong>Code</strong>: @child.Code
+                            </p>
+                            <button type="button" class="btn card-link" @onclick="() => RemoveChild(child)">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</fieldset>
+

@@ -33,23 +33,57 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Components.Categories
         [Parameter]
         public EventCallback<CategoryDescriptorModel> OnChildRemoved { get; set; }
 
+        [Parameter]
+        public bool Readonly { get; set; }
+
+        bool parentEditingEnabled;
+        bool childrenEditingEnabled;
+
+        EditContext parentContext;
+        EditContext childrenContext;
+
+        private CategoryDescriptorModel _originalParent;
+        private bool _parentIsEmpty;
+
         private Expression<Func<CategoryDescriptorModel, string>> displayValue = (category) => category.IsEmpty ? "Choose a category" : $"{category.Code} - {category.Name}";
 
         private IEnumerable<CategoryDescriptorModel> categories = new CategoryDescriptorModel[0];
 
-        EditContext context;
+        private CategoryDescriptorModel _child = new CategoryDescriptorModel();
 
-        async Task SetParentCategory(CategoryDescriptorModel parent) => await OnParentSet.InvokeAsync(parent);
+        async Task SetParentCategory() => await OnParentSet.InvokeAsync(ParentCategory);
 
-        async Task RemoveParentCategory() => await OnParentRemoved.InvokeAsync(ParentCategory);
+        async Task RemoveParentCategory()
+        {
+            if (!_parentIsEmpty)
+            {
+                await OnParentRemoved.InvokeAsync(ParentCategory);
+            }
+        }
 
-        async Task AddChild(CategoryDescriptorModel child) => await OnChildAdded.InvokeAsync(child);
+        async Task AddChild()
+        {
+            await OnChildAdded.InvokeAsync(_child);
+            _child = new CategoryDescriptorModel();
+        }
 
         async Task RemoveChild(CategoryDescriptorModel child) => await OnChildRemoved.InvokeAsync(child);
 
         protected override Task OnInitializedAsync()
         {
-            context = new EditContext(ParentCategory);
+            parentContext = new EditContext(ParentCategory);
+            childrenContext = new EditContext(Children);
+
+            parentEditingEnabled = !Readonly;
+            childrenEditingEnabled = !Readonly;
+
+            _parentIsEmpty = ParentCategory.IsEmpty;
+            _originalParent = new CategoryDescriptorModel
+            {
+                Code = ParentCategory.Code,
+                Id = ParentCategory.Id,
+                Name = ParentCategory.Name
+            };
 
             return base.OnInitializedAsync();
         }
@@ -58,6 +92,39 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Components.Categories
         {
             categories = await Client.SearchCategoriesByText(query);
             return categories;
+        }
+
+        void EnableParentEditing() => parentEditingEnabled = true;
+
+        void EnableChildrenEditing() => childrenEditingEnabled = true;
+
+        void CancelParent()
+        {
+            ParentCategory = new CategoryDescriptorModel
+            {
+                Code = _originalParent.Code,
+                Id = _originalParent.Id,
+                Name = _originalParent.Name
+            };
+
+            if (Readonly)
+            {
+                parentEditingEnabled = false;
+            }
+
+            StateHasChanged();
+        }
+
+        void CancelChild()
+        {
+            _child = new CategoryDescriptorModel();
+
+            if (Readonly)
+            {
+                childrenEditingEnabled = false;
+            }
+
+            StateHasChanged();
         }
     }
 }

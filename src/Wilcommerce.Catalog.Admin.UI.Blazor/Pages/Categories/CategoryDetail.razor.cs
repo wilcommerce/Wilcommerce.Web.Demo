@@ -57,5 +57,73 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Categories
                 StateHasChanged();
             }
         }
+
+        async Task AddChild(CategoryDescriptorModel child)
+        {
+            try
+            {
+                await Client.AddCategoryChild(_CategoryId, child.Id);
+                category.Children.Add(child);
+            }
+            catch 
+            {
+                errorRaised = true;
+            }
+            finally
+            {
+                StateHasChanged();
+            }
+        }
+
+        async Task RemoveChild(CategoryDescriptorModel child)
+        {
+            try
+            {
+                await Client.DeleteCategoryChild(_CategoryId, child.Id);
+                category.Children.Remove(child);
+            }
+            catch 
+            {
+                errorRaised = true;
+            }
+            finally
+            {
+                StateHasChanged();
+            }
+        }
+
+        async Task RemoveParent(CategoryDescriptorModel parent)
+        {
+            try
+            {
+                await Client.DeleteCategoryParent(_CategoryId, parent.Id);
+                category.Parent = new CategoryDescriptorModel();
+            }
+            catch 
+            {
+                errorRaised = true;
+            }
+            finally
+            {
+                StateHasChanged();
+            }
+        }
+
+        async Task SetParent(CategoryDescriptorModel parent)
+        {
+            try
+            {
+                await Client.AddCategoryParent(_CategoryId, parent.Id);
+                category.Parent = parent;
+            }
+            catch 
+            {
+                errorRaised = true;
+            }
+            finally
+            {
+                StateHasChanged();
+            }
+        }
     }
 }

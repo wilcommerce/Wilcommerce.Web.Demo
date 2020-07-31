@@ -45,7 +45,12 @@ else
                             </TabPanel>
                             <TabPanel Name="parentAndChildren">
                                 <CategoryRelation ParentCategory="category.Parent"
-                                                  Children="category.Children"/>
+                                                  Children="category.Children"
+                                                  Readonly="true"
+                                                  OnChildAdded="AddChild"
+                                                  OnChildRemoved="RemoveChild"
+                                                  OnParentRemoved="RemoveParent"
+                                                  OnParentSet="SetParent"/>
                             </TabPanel>
                         </Content>
                     </Tabs>
