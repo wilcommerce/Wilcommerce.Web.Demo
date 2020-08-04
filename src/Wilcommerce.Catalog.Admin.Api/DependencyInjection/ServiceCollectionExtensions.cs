@@ -16,7 +16,13 @@ namespace Wilcommerce.Catalog.Admin.Api
             services
                 .AddScoped<IBrandsControllerServices, BrandsControllerServices>()
                 .AddScoped<ICustomAttributesControllerServices, CustomAttributesControllerServices>()
-                .AddScoped<ICategoriesControllerServices, CategoriesControllerServices>();
+                .AddScoped<ICategoriesControllerServices, CategoriesControllerServices>()
+                .AddScoped<IProductsControllerServices, ProductsControllerServices>()
+                .AddScoped<IProductAttributesControllerServices, ProductAttributesControllerServices>()
+                .AddScoped<IProductCategoriesControllerServices, ProductCategoriesControllerServices>()
+                .AddScoped<IProductImagesControllerServices, ProductImagesControllerServices>()
+                .AddScoped<IProductReviewsControllerServices, ProductReviewsControllerServices>()
+                .AddScoped<IProductTierPricesControllerServices, ProductTierPricesControllerServices>();
 
             return services;
         }
