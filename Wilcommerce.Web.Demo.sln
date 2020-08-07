@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{5FC85A46-C09C-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Web.UI.Blazor", "src\Wilcommerce.Web.UI.Blazor\Wilcommerce.Web.UI.Blazor.csproj", "{EB17B06A-AE9F-4525-91B8-B608DA0EFE45}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilcommerce.Core.Admin", "src\Wilcommerce.Core.Admin\Wilcommerce.Core.Admin.csproj", "{53BBBE60-AEF9-4864-A2D6-103C942BF66B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{EB17B06A-AE9F-4525-91B8-B608DA0EFE45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB17B06A-AE9F-4525-91B8-B608DA0EFE45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB17B06A-AE9F-4525-91B8-B608DA0EFE45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53BBBE60-AEF9-4864-A2D6-103C942BF66B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53BBBE60-AEF9-4864-A2D6-103C942BF66B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53BBBE60-AEF9-4864-A2D6-103C942BF66B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53BBBE60-AEF9-4864-A2D6-103C942BF66B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +125,7 @@ Global
 		{88944706-56A9-4FF0-84C2-9F62AFEBEBB0} = {FFDC7A6F-31B5-41A5-8867-E81BC1E7CFB7}
 		{5FC85A46-C09C-4AFD-83F9-14B4B1AEB0A3} = {A1E2ECD6-3D25-4E25-8BE9-C863F5BA43E4}
 		{EB17B06A-AE9F-4525-91B8-B608DA0EFE45} = {5FC85A46-C09C-4AFD-83F9-14B4B1AEB0A3}
+		{53BBBE60-AEF9-4864-A2D6-103C942BF66B} = {FFDC7A6F-31B5-41A5-8867-E81BC1E7CFB7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA6A1EC0-2DCE-4500-B23D-A87D328D58F5}

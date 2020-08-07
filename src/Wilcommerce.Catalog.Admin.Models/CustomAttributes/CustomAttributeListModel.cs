@@ -1,4 +1,5 @@
 ﻿using System;
+using Wilcommerce.Core.Admin.Models;
 
 namespace Wilcommerce.Catalog.Admin.Models.CustomAttributes
 {

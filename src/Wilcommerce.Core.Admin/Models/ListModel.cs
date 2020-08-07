@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Wilcommerce.Catalog.Admin.Models
+namespace Wilcommerce.Core.Admin.Models
 {
     public abstract class ListModel<TListItem> where TListItem : class
     {
