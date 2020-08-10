@@ -11,10 +11,10 @@
                        MinimumLength="MinimumLength"
                        Disabled="Disabled">
         <ResultTemplate>
-            @DisplayValue.Compile().Invoke(context)
+            @DisplayValue.Invoke(context)
         </ResultTemplate>
         <SelectedTemplate>
-            @DisplayValue.Compile().Invoke(context)
+            @DisplayValue.Invoke(context)
         </SelectedTemplate>
     </BlazoredTypeahead>
     
@@ -47,7 +47,7 @@
     public Expression<Func<TItem>> ValueExpression { get; set; }
 
     [Parameter]
-    public Expression<Func<TItem, string>> DisplayValue { get; set; }
+    public Func<TItem, string> DisplayValue { get; set; }
 
     [Parameter]
     public IEnumerable<TItem> Items { get; set; }

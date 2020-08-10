@@ -45,7 +45,7 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Components.Categories
         private CategoryDescriptorModel _originalParent;
         private bool _parentIsEmpty;
 
-        private Expression<Func<CategoryDescriptorModel, string>> displayValue = (category) => category.IsEmpty ? "Choose a category" : $"{category.Code} - {category.Name}";
+        private Func<CategoryDescriptorModel, string> displayValue = (category) => category.IsEmpty ? "Choose a category" : $"{category.Code} - {category.Name}";
 
         private IEnumerable<CategoryDescriptorModel> categories = new CategoryDescriptorModel[0];
 

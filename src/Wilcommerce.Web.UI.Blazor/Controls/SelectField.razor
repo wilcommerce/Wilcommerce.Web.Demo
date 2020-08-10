@@ -15,7 +15,7 @@
         }
         @foreach (var item in Items)
         {
-            <option value="@OptionValue.Compile().Invoke(item)">@DisplayValue.Compile().Invoke(item)</option>
+            <option value="@OptionValue.Invoke(item)">@DisplayValue.Invoke(item)</option>
         }
     </InputSelect>
     <ValidationMessage For="@ValueExpression" />
@@ -44,10 +44,10 @@
     public Expression<Func<TValue>> ValueExpression { get; set; }
 
     [Parameter]
-    public Expression<Func<TItem, string>> DisplayValue { get; set; }
+    public Func<TItem, string> DisplayValue { get; set; }
 
     [Parameter]
-    public Expression<Func<TItem, TValue>> OptionValue { get; set; }
+    public Func<TItem, TValue> OptionValue { get; set; }
 
     [Parameter]
     public IEnumerable<TItem> Items { get; set; }
