@@ -39,7 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{5FC85A46-C09C-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Web.UI.Blazor", "src\Wilcommerce.Web.UI.Blazor\Wilcommerce.Web.UI.Blazor.csproj", "{EB17B06A-AE9F-4525-91B8-B608DA0EFE45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wilcommerce.Core.Admin", "src\Wilcommerce.Core.Admin\Wilcommerce.Core.Admin.csproj", "{53BBBE60-AEF9-4864-A2D6-103C942BF66B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wilcommerce.Core.Admin", "src\Wilcommerce.Core.Admin\Wilcommerce.Core.Admin.csproj", "{53BBBE60-AEF9-4864-A2D6-103C942BF66B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
