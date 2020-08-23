@@ -1,0 +1,85 @@
+﻿<EditForm Context="context" Model="Model" OnValidSubmit="HandleSubmit" class="col-md-12 mt-3">
+    <DataAnnotationsValidator />
+
+    @if (Readonly && !editingEnabled)
+    {
+        <div class="form-group">
+            <button type="button" class="btn btn-outline-secondary" @onclick="EnableEditing">Edit data</button>
+        </div>
+    }
+
+    <TextField Label="EAN Code"
+               FieldId="@nameof(Model.EanCode)"
+               CssClass="@formControlClass"
+               Disabled="!editingEnabled"
+               @bind-Value="Model.EanCode" />
+
+    <TextField Label="SKU Code"
+               FieldId="@nameof(Model.Sku)"
+               CssClass="@formControlClass"
+               Disabled="!editingEnabled"
+               @bind-Value="Model.Sku" />
+
+    <TextField Label="Name"
+               FieldId="@nameof(Model.Name)"
+               CssClass="@formControlClass"
+               Disabled="!editingEnabled"
+               @bind-Value="Model.Name" />
+
+    <TextField Label="Url"
+               FieldId="@nameof(Model.Url)"
+               CssClass="@formControlClass"
+               Disabled="!editingEnabled"
+               @bind-Value="Model.Url" />
+
+    <PriceField Label="Price"
+                FieldId="@nameof(Model.Price)"
+                CssClass="@formControlClass"
+                Disabled="!editingEnabled"
+                @bind-Value="Model.Price"/>
+
+    <NumberField Label="Unit in stock"
+                 FieldId="@nameof(Model.UnitInStock)"
+                 CssClass="@formControlClass"
+                 Disabled="!editingEnabled"
+                 @bind-Value="Model.UnitInStock" />
+
+    <CheckboxField Label="On sale"
+                   FieldId="@nameof(Model.IsOnSale)"
+                   Disabled="!editingEnabled"
+                   @bind-Value="Model.IsOnSale" />
+
+    @if (Model.IsOnSale)
+    {
+        <div class="row">
+            <div class="col">
+                <DateField Label="From"
+                           FieldId="@nameof(Model.OnSaleFrom)"
+                           CssClass="@formControlClass"
+                           Disabled="!editingEnabled"
+                           @bind-Value="Model.OnSaleFrom" />
+            </div>
+            <div class="col">
+                <DateField Label="To"
+                           FieldId="@nameof(Model.OnSaleTo)"
+                           CssClass="@formControlClass"
+                           Disabled="!editingEnabled"
+                           @bind-Value="Model.OnSaleTo" />
+            </div>
+        </div>
+    }
+
+    <TextAreaField Label="Description"
+                   FieldId="@nameof(Model.Description)"
+                   CssClass="@formControlClass"
+                   Disabled="@(!editingEnabled)"
+                   @bind-Value="Model.Description" />
+
+    @if (!Readonly || editingEnabled)
+    {
+        <div class="form-group align-content-end">
+            <button type="reset" class="btn btn-outline-primary mr-3" @onclick="Cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    }
+</EditForm>

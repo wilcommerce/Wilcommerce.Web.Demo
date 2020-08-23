@@ -2,8 +2,8 @@
 {
     public interface IUrlBuilder
     {
-        public string ApiPrefix { get; }
+        string ApiPrefix { get; }
 
-        public string ResourceName { get; }
+        string ResourceName { get; }
     }
 }

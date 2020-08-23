@@ -1,0 +1,26 @@
+﻿@page "/catalog/products/create"
+
+<AdminPage Title="Create new Product">
+    <Toolbar>
+        <a href="catalog/products" class="btn btn-primary">
+            <i class="fas fa-chevron-circle-left"></i> Back to list
+        </a>
+    </Toolbar>
+    <PageContent>
+        <div class="row">
+            <div class="col">
+                <Tabs SelectedTab="generalInfo">
+                    <Items>
+                        <Tab Name="generalInfo">General Info</Tab>
+                    </Items>
+                    <Content>
+                        <TabPanel Name="generalInfo">
+                            <ProductInfoForm Model="model"
+                                             OnModelSaved="CreateNewProduct"/>
+                        </TabPanel>
+                    </Content>
+                </Tabs>
+            </div>
+        </div>
+    </PageContent>
+</AdminPage>

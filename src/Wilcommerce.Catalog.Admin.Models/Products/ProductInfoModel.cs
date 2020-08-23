@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Wilcommerce.Core.Common.Models;
 
 namespace Wilcommerce.Catalog.Admin.Models.Products
@@ -26,5 +24,10 @@ namespace Wilcommerce.Catalog.Admin.Models.Products
         public DateTime? OnSaleFrom { get; set; }
 
         public DateTime? OnSaleTo { get; set; }
+
+        public ProductInfoModel()
+        {
+            Price = new Currency();
+        }
     }
 }

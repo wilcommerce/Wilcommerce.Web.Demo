@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
                 queryModel = new ProductListQueryModel();
             }
 
-            var productsQuery = Database.Products;
+            var productsQuery = Database.Products.AsNoTracking();
             if (queryModel.ActiveOnly)
             {
                 productsQuery = productsQuery.Active();
