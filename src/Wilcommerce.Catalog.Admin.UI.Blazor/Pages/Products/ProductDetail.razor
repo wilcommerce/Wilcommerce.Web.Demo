@@ -1,0 +1,49 @@
+﻿@page "/catalog/products/{productId}"
+
+@if (product == null)
+{
+    <Loader />
+}
+else
+{
+    <AdminPage Title="@product?.Details.Name">
+        <Toolbar>
+            <a href="catalog/products" class="btn btn-primary">
+                <i class="fas fa-chevron-circle-left"></i> Back to list
+            </a>
+        </Toolbar>
+        <PageContent>
+            @if (errorRaised)
+            {
+                <div class="row">
+                    <div class="col">
+                        <Alert Color="Color.Danger">
+                            <AlertMessage>Error saving the product, please retry</AlertMessage>
+                        </Alert>
+                        <CloseButton />
+                    </div>
+                </div>
+            }
+            <div class="row">
+                <div class="col">
+                    <Tabs SelectedTab="generalInfo">
+                        <Items>
+                            <Tab Name="generalInfo">General Info</Tab>
+                            <Tab Name="seo">SEO</Tab>
+                        </Items>
+                        <Content>
+                            <TabPanel Name="generalInfo">
+                                <ProductInfoForm Model="product.Details"
+                                                 Readonly="true" />
+                            </TabPanel>
+                            <TabPanel Name="seo">
+                                <SeoDataForm Model="product.Seo"
+                                             Readonly="true" />
+                            </TabPanel>
+                        </Content>
+                    </Tabs>
+                </div>
+            </div>
+        </PageContent>
+    </AdminPage>
+}

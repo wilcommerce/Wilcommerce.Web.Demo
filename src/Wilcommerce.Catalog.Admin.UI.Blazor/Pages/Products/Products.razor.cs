@@ -22,6 +22,7 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Products
         public Products()
         {
             queryModel = new ProductListQueryModel();
+
             loading = false;
         }
 

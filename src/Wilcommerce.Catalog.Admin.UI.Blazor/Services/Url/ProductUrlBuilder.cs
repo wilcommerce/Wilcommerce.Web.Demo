@@ -36,7 +36,7 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Services.Url
 
         public string DeleteProductUrl(Guid productId) => $"{ApiPrefix}/{ResourceName}/{productId}";
 
-        public string RestoreProductUrl(Guid productId) => $"{ApiPrefix}/{ResourceName}/{productId}";
+        public string RestoreProductUrl(Guid productId) => $"{ApiPrefix}/{ResourceName}/{productId}/restore";
 
         public string UpdateProductVendorUrl(Guid productId) => $"{ApiPrefix}/{ResourceName}/{productId}";
 
