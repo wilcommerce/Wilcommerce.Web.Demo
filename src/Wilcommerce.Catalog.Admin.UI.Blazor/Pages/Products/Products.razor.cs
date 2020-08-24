@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.Products;
 using Wilcommerce.Catalog.Admin.UI.Blazor.Services.Http;
@@ -53,6 +50,42 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Products
             finally
             {
                 StateHasChanged();
+                loading = false;
+            }
+        }
+
+        void OpenProductDetail(ProductListModel.ListItem product)
+        {
+            var url = $"catalog/products/{product.Id}";
+            Navigation.NavigateTo(url);
+        }
+
+        async Task DeleteProduct(ProductListModel.ListItem product)
+        {
+            loading = true;
+
+            try
+            {
+                await Client.DeleteProduct(product.Id);
+                await LoadProducts(queryModel);
+            }
+            finally
+            {
+                loading = false;
+            }
+        }
+
+        async Task RestoreProduct(ProductListModel.ListItem product)
+        {
+            loading = true;
+
+            try
+            {
+                await Client.RestoreProduct(product.Id);
+                await LoadProducts(queryModel);
+            }
+            finally
+            {
                 loading = false;
             }
         }

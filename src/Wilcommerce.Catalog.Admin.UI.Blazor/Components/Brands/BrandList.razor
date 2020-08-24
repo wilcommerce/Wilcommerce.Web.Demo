@@ -4,7 +4,7 @@
             <th>&nbsp;</th>
             <th>Name</th>
             <th>Url</th>
-            <th colspan="2">&nbsp;</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -16,24 +16,24 @@
                 </td>
                 <td>@brand.Name</td>
                 <td>@brand.Url</td>
-                <td class="col-auto">
-                    <button type="button" class="btn btn-outline-primary" @onclick="() => OpenBrandDetail(brand)">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                </td>
-                <td class="col-auto">
-                    @if (!brand.Deleted)
-                    {
-                        <button type="button" class="btn btn-outline-danger" @onclick="() => DeleteBrand(brand)">
-                            <i class="far fa-trash-alt"></i> Delete
+                <td>
+                    <div class="btn-group" role="group" aria-label="Brand actions">
+                        <button type="button" class="btn btn-outline-primary" @onclick="() => OpenBrandDetail(brand)">
+                            <i class="far fa-eye"></i> View
                         </button>
-                    }
-                    else
-                    {
-                        <button type="button" class="btn btn-outline-primary" @onclick="() => RestoreBrand(brand)">
-                            <i class="fas fa-undo-alt"></i> Restore
-                        </button>
-                    }
+                        @if (!brand.Deleted)
+                        {
+                            <button type="button" class="btn btn-outline-danger" @onclick="() => DeleteBrand(brand)">
+                                <i class="far fa-trash-alt"></i> Delete
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-outline-primary" @onclick="() => RestoreBrand(brand)">
+                                <i class="fas fa-undo-alt"></i> Restore
+                            </button>
+                        }
+                    </div>
                 </td>
             </tr>
         }

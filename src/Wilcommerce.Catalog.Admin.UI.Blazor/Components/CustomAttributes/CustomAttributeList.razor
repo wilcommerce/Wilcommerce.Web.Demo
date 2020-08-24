@@ -4,7 +4,7 @@
             <th>Name</th>
             <th>Data type</th>
             <th>Unit of measure</th>
-            <th colspan="2"></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -14,24 +14,24 @@
                 <td>@item.Name</td>
                 <td>@item.DataType</td>
                 <td>@item.UnitOfMeasure</td>
-                <td class="col-auto">
-                    <button type="button" class="btn btn-outline-primary" @onclick="() => OpenAttributeDetail(item)">
-                        <i class="fas fa-edit"></i> Edit
-                    </button>
-                </td>
-                <td class="col-auto">
-                    @if (!item.Deleted)
-                    {
-                        <button type="button" class="btn btn-outline-danger" @onclick="() => DeleteAttribute(item)">
-                            <i class="far fa-trash-alt"></i> Delete
+                <td>
+                    <div class="btn-group" role="group" aria-label="Category actions">
+                        <button type="button" class="btn btn-outline-primary" @onclick="() => OpenAttributeDetail(item)">
+                            <i class="far fa-eye"></i> View
                         </button>
-                    }
-                    else
-                    {
-                        <button type="button" class="btn btn-outline-primary" @onclick="() => RestoreAttribute(item)">
-                            <i class="fas fa-undo-alt"></i> Restore
-                        </button>
-                    }
+                        @if (!item.Deleted)
+                        {
+                            <button type="button" class="btn btn-outline-danger" @onclick="() => DeleteAttribute(item)">
+                                <i class="far fa-trash-alt"></i> Delete
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-outline-primary" @onclick="() => RestoreAttribute(item)">
+                                <i class="fas fa-undo-alt"></i> Restore
+                            </button>
+                        }
+                    </div>
                 </td>
             </tr>
         }

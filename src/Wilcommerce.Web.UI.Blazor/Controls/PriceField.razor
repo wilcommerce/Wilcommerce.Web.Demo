@@ -4,6 +4,7 @@
     <label for="@FieldId">@Label</label>
     <div class="input-group mb-3">
         <InputNumber @bind-Value="Value.Amount"
+                     @bind-Value:format="F2"
                      @onchange="RaiseValueChanged"
                      id="@FieldId"
                      class="@CssClass"
