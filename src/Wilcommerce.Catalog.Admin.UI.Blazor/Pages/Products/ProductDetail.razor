@@ -34,11 +34,13 @@ else
                         <Content>
                             <TabPanel Name="generalInfo">
                                 <ProductInfoForm Model="product.Details"
-                                                 Readonly="true" />
+                                                 Readonly="true"
+                                                 OnModelSaved="UpdateProductInfo"/>
                             </TabPanel>
                             <TabPanel Name="seo">
                                 <SeoDataForm Model="product.Seo"
-                                             Readonly="true" />
+                                             Readonly="true"
+                                             OnModelSaved="UpdateProductSeoData"/>
                             </TabPanel>
                         </Content>
                     </Tabs>

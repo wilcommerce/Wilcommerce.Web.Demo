@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.Products;
 using Wilcommerce.Catalog.Admin.UI.Blazor.Services.Http;
+using Wilcommerce.Core.Common.Models;
 
 namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Products
 {
@@ -25,6 +26,40 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Products
         protected override async Task OnInitializedAsync()
         {
             product = await Client.GetProductDetail(_ProductId);
+        }
+
+        async Task UpdateProductInfo(ProductInfoModel model)
+        {
+            try
+            {
+                await Client.UpdateProductInfo(_ProductId, model);
+                product.Details = model;
+            }
+            catch 
+            {
+                errorRaised = true;
+            }
+            finally
+            {
+                StateHasChanged();
+            }
+        }
+        
+        async Task UpdateProductSeoData(SeoData seo)
+        {
+            try
+            {
+                await Client.UpdateProductSeoData(_ProductId, seo);
+                product.Seo = seo;
+            }
+            catch 
+            {
+                errorRaised = true;
+            }
+            finally
+            {
+                StateHasChanged();
+            }
         }
     }
 }
