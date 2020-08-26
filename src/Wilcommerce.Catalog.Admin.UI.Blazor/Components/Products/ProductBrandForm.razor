@@ -1,0 +1,27 @@
+﻿<EditForm Context="context" Model="Brand" OnValidSubmit="HandleSubmit" class="col-md-12 mt-3">
+    <DataAnnotationsValidator />
+
+    @if (Readonly && !editingEnabled)
+    {
+        <div class="form-group">
+            <button type="button" class="btn btn-outline-secondary" @onclick="EnableEditing">Edit data</button>
+        </div>
+    }
+
+    <AutocompleteField TItem="ProductBrandModel"
+                       Label="Choose a brand"
+                       FieldId="ProductBrand"
+                       DisplayValue="displayValue"
+                       OnSearch="query => SearchBrandsByText(query)"
+                       CssClass="@formControlClass"
+                       Disabled="!editingEnabled"
+                       @bind-Value="Brand" />
+
+    @if (!Readonly || editingEnabled)
+    {
+        <div class="form-group align-content-end">
+            <button type="reset" class="btn btn-outline-primary mr-3" @onclick="Cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    }
+</EditForm>

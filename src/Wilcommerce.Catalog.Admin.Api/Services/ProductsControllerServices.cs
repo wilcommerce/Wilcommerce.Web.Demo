@@ -118,7 +118,12 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
                     UnitInStock = product.UnitInStock,
                     Url = product.Url
                 },
-                Seo = product.Seo
+                Seo = product.Seo,
+                Brand = new ProductBrandModel
+                {
+                    BrandId = product.Vendor?.Id ?? Guid.Empty,
+                    Name = product.Vendor?.Name
+                }
             };
 
             return model;

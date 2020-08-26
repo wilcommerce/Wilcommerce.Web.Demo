@@ -38,7 +38,7 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Services.Url
 
         public string RestoreProductUrl(Guid productId) => $"{ApiPrefix}/{ResourceName}/{productId}/restore";
 
-        public string UpdateProductVendorUrl(Guid productId) => $"{ApiPrefix}/{ResourceName}/{productId}";
+        public string UpdateProductVendorUrl(Guid productId) => $"{ApiPrefix}/{ResourceName}/{productId}/vendor";
 
         public string GetProductVariantsUrl(Guid productId) => $"{ApiPrefix}/{ResourceName}/{productId}/variants";
 

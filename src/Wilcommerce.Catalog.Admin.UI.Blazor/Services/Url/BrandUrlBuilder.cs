@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using Wilcommerce.Catalog.Admin.Models.Brands;
 using Wilcommerce.Web.AspNetCore.Url;
 
@@ -18,7 +19,7 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Services.Url
                 url = $"{url}?activeOnly={queryModel.ActiveOnly}&page={queryModel.Page}&size={queryModel.Size}";
                 if (!string.IsNullOrWhiteSpace(queryModel.Query))
                 {
-                    url = $"{url}&query={queryModel.Query}";
+                    url = $"{url}&query={HttpUtility.UrlEncode(queryModel.Query)}";
                 }
             }
 
@@ -36,5 +37,7 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Services.Url
         public string DeleteBrandUrl(Guid brandId) => $"{ApiPrefix}/{ResourceName}/{brandId}";
 
         public string RestoreBrandUrl(Guid brandId) => $"{ApiPrefix}/{ResourceName}/{brandId}/restore";
+
+        public string SearchBrandByTextUrl(string query) => $"{ApiPrefix}/{ResourceName}/search?q={HttpUtility.UrlEncode(query)}";
     }
 }

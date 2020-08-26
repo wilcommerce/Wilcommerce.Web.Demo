@@ -29,6 +29,7 @@ else
                     <Tabs SelectedTab="generalInfo">
                         <Items>
                             <Tab Name="generalInfo">General Info</Tab>
+                            <Tab Name="brand">Brand</Tab>
                             <Tab Name="seo">SEO</Tab>
                         </Items>
                         <Content>
@@ -36,6 +37,11 @@ else
                                 <ProductInfoForm Model="product.Details"
                                                  Readonly="true"
                                                  OnModelSaved="UpdateProductInfo"/>
+                            </TabPanel>
+                            <TabPanel Name="brand">
+                                <ProductBrandForm Brand="product.Brand"
+                                                  Readonly="true"
+                                                  OnModelSaved="UpdateProductBrand"/>
                             </TabPanel>
                             <TabPanel Name="seo">
                                 <SeoDataForm Model="product.Seo"

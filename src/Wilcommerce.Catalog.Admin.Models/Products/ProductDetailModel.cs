@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Wilcommerce.Core.Common.Models;
 
 namespace Wilcommerce.Catalog.Admin.Models.Products
@@ -12,5 +10,7 @@ namespace Wilcommerce.Catalog.Admin.Models.Products
         public ProductInfoModel Details { get; set; }
 
         public SeoData Seo { get; set; }
+
+        public ProductBrandModel Brand { get; set; }
     }
 }

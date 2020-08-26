@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.Brands;
@@ -132,6 +133,21 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
                 .Logo;
 
             return logo;
+        }
+
+        public IEnumerable<BrandDescriptorModel> SearchBrandsByText(string query)
+        {
+            var brands = Database.Brands
+                .Active()
+                .OrderBy(b => b.Name)
+                .Where(b => b.Name.Contains(query))
+                .Select(b => new BrandDescriptorModel
+                {
+                    Id = b.Id,
+                    Name = b.Name
+                }).ToArray();
+
+            return brands;
         }
     }
 }

@@ -132,5 +132,12 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
 
             return Ok();
         }
+
+        [HttpGet("search")]
+        public IActionResult GetSearch(string q)
+        {
+            var brands = ControllerServices.SearchBrandsByText(q);
+            return Ok(brands);
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.Brands;
 using Wilcommerce.Core.Common.Models;
@@ -22,5 +23,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
         Task RestoreBrand(Guid brandId);
         
         Image GetBrandLogo(Guid brandId);
+
+        IEnumerable<BrandDescriptorModel> SearchBrandsByText(string query);
     }
 }

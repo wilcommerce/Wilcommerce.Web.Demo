@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -121,6 +122,14 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Services.Http
             {
                 throw new ApplicationException($"Restore brand {brandId} call ended with status code {response.StatusCode}");
             }
+        }
+
+        public async Task<IEnumerable<BrandDescriptorModel>> SearchBrandsByText(string query)
+        {
+            var url = UrlBuilder.SearchBrandByTextUrl(query);
+            var brands = await Client.GetFromJsonAsync<IEnumerable<BrandDescriptorModel>>(url);
+
+            return brands;
         }
     }
 }

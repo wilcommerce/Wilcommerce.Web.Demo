@@ -61,5 +61,22 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Products
                 StateHasChanged();
             }
         }
+
+        async Task UpdateProductBrand(ProductBrandModel brand)
+        {
+            try
+            {
+                await Client.UpdateProductVendor(_ProductId, brand);
+                product.Brand = brand;
+            }
+            catch 
+            {
+                errorRaised = true;
+            }
+            finally
+            {
+                StateHasChanged();
+            }
+        }
     }
 }
