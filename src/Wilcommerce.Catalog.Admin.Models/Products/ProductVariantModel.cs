@@ -14,5 +14,10 @@ namespace Wilcommerce.Catalog.Admin.Models.Products
         public string Name { get; set; }
 
         public Currency Price { get; set; }
+
+        public ProductVariantModel()
+        {
+            Price = new Currency();
+        }
     }
 }

@@ -112,7 +112,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             return Ok();
         }
 
-        [HttpPost("{id}/variants")]
+        [HttpGet("{id}/variants")]
         public IActionResult GetVariants(Guid id)
         {
             if (id == Guid.Empty)

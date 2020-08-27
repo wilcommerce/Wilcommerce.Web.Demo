@@ -1,0 +1,79 @@
+﻿<div class="row mt-3">
+    <div class="col-md-7">
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary" type="button" @onclick="AddNewVariant">Add new variant</button>
+            </div>
+        </div>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>EAN</th>
+                    <th>SKU</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var variant in Variants)
+                {
+                    <tr>
+                        <td>@variant.EanCode</td>
+                        <td>@variant.Sku</td>
+                        <td>@variant.Name</td>
+                        <td>@variant.Price.ToString()</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Product actions">
+                                <button type="button" class="btn btn-outline-primary" @onclick="() => EditVariant(variant)">
+                                    <i class="far fa-edit"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-danger" @onclick="() => RemoveVariant(variant)">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col">
+        <EditForm Context="context" Model="model" OnValidSubmit="SaveVariant">
+            <DataAnnotationsValidator />
+
+            <TextField Label="EAN Code"
+                       FieldId="@nameof(model.EanCode)"
+                       CssClass="@formControlClass"
+                       Disabled="!editingEnabled"
+                       @bind-Value="model.EanCode" />
+
+            <TextField Label="SKU Code"
+                       FieldId="@nameof(model.Sku)"
+                       CssClass="@formControlClass"
+                       Disabled="!editingEnabled"
+                       @bind-Value="model.Sku" />
+
+            <TextField Label="Name"
+                       FieldId="@nameof(model.Name)"
+                       CssClass="@formControlClass"
+                       Disabled="!editingEnabled"
+                       @bind-Value="model.Name" />
+
+            <PriceField Label="Price"
+                        FieldId="@nameof(model.Price)"
+                        CssClass="@formControlClass"
+                        Disabled="!editingEnabled"
+                        @bind-Value="model.Price" />
+
+            @if (!Readonly || editingEnabled)
+            {
+                <div class="form-group align-content-end">
+                    <button type="reset" class="btn btn-outline-primary mr-3" @onclick="Cancel">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </EditForm>
+    </div>
+</div>

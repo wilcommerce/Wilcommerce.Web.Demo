@@ -155,7 +155,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
 
         public IEnumerable<ProductVariantModel> GetProductVariants(Guid productId)
         {
-            var variants = Database.Products
+            var variants = Database.Products.AsNoTracking()
                 .VariantsOf(productId)
                 .OrderBy(p => p.Name)
                 .OrderBy(p => p.EanCode)

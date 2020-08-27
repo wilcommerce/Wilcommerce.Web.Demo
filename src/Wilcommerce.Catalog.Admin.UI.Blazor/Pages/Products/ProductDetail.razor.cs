@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.Products;
 using Wilcommerce.Catalog.Admin.UI.Blazor.Services.Http;
@@ -21,11 +22,19 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Products
 
         ProductDetailModel product;
 
+        IList<ProductVariantModel> variants = new List<ProductVariantModel>();
+
         private bool errorRaised;
 
         protected override async Task OnInitializedAsync()
         {
             product = await Client.GetProductDetail(_ProductId);
+            await LoadVariants();
+        }
+
+        private async Task LoadVariants()
+        {
+            variants = (await Client.GetProductVariants(_ProductId)).ToList();
         }
 
         async Task UpdateProductInfo(ProductInfoModel model)
@@ -68,6 +77,47 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Pages.Products
             {
                 await Client.UpdateProductVendor(_ProductId, brand);
                 product.Brand = brand;
+            }
+            catch 
+            {
+                errorRaised = true;
+            }
+            finally
+            {
+                StateHasChanged();
+            }
+        }
+
+        async Task RemoveVariant(ProductVariantModel variant)
+        {
+            try
+            {
+                await Client.DeleteProductVariant(_ProductId, variant.Id);
+                variants.Remove(variant);
+            }
+            catch 
+            {
+                errorRaised = true;
+            }
+            finally
+            {
+                StateHasChanged();
+            }
+        }
+
+        async Task SaveVariant(ProductVariantModel variant)
+        {
+            try
+            {
+                if (variant.Id == Guid.Empty)
+                {
+                    await Client.CreateProductVariant(_ProductId, variant);
+                    await LoadVariants();
+                }
+                else
+                {
+                    await Client.UpdateProductVariant(_ProductId, variant.Id, variant);
+                }
             }
             catch 
             {
