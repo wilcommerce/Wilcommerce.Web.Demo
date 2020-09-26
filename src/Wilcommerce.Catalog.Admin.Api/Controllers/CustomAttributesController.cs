@@ -26,7 +26,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         public IActionResult Get([FromQuery]CustomAttributeListQueryModel queryModel = null)
         {
             var model = ControllerServices.GetCustomAttributes(queryModel);
-            _logger.LogInformation($"Found {model.Items.Count()} custom attributes of {model.Total}");
+            _logger.LogInformation("Found {itemsNumber} custom attributes of {itemsTotal}", model.Items.Count(), model.Total);
 
             return Ok(model);
         }
@@ -35,7 +35,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         public async Task<IActionResult> Post([FromBody]CustomAttributeInfoModel model)
         {
             var customAttributeId = await ControllerServices.CreateNewCustomAttribute(model);
-            _logger.LogInformation($"Create new custom attribute with id {customAttributeId}");
+            _logger.LogInformation("New custom attribute created with id {customAttributeId}", customAttributeId);
 
             return CreatedAtAction(nameof(Get), new { id = customAttributeId }, customAttributeId);
         }
@@ -50,6 +50,8 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             }
 
             var model = ControllerServices.GetCustomAttributeDetail(id);
+            _logger.LogInformation("Attribute found with id {customAttributeId}", id);
+
             return Ok(model);
         }
 
@@ -63,6 +65,8 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             }
 
             await ControllerServices.UpdateCustomAttribute(id, model);
+            _logger.LogInformation("Custom attribute {customAttributeId} updated", id);
+
             return Ok();
         }
 
@@ -76,6 +80,8 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             }
 
             await ControllerServices.DeleteCustomAttribute(id);
+            _logger.LogInformation("Custom attribute {customAttributeId} deleted", id);
+
             return Ok();
         }
 
@@ -89,6 +95,8 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             }
 
             await ControllerServices.RestoreCustomAttribute(id);
+            _logger.LogInformation("Custom attribute {customAttributeId} restored", id);
+
             return Ok();
         }
     }

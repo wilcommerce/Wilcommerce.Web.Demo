@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +27,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         public IActionResult Get([FromQuery]ProductListQueryModel queryModel = null)
         {
             var model = ControllerServices.GetProducts(queryModel);
-            _logger.LogInformation($"Found {model.Items.Count()} products of {model.Total}");
+            _logger.LogInformation("Found {itemsNumber} products of {itemsTotal}", model.Items.Count(), model.Total);
 
             return Ok(model);
         }
@@ -38,10 +37,13 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty product id");
                 return BadRequest(nameof(id));
             }
 
             var model = ControllerServices.GetProductDetail(id);
+            _logger.LogInformation("Product found with id {productId}", id);
+
             return Ok(model);
         }
 
@@ -49,6 +51,8 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         public async Task<IActionResult> Post([FromBody]ProductInfoModel model)
         {
             var productId = await ControllerServices.CreateNewProduct(model);
+            _logger.LogInformation("New product created with id {productId}", productId);
+
             return CreatedAtAction(nameof(Get), new { id = productId }, productId);
         }
 
@@ -57,10 +61,13 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty product id");
                 return BadRequest(nameof(id));
             }
 
             await ControllerServices.UpdateProductInfo(id, model);
+            _logger.LogInformation("Info updated for product {productId}", id);
+
             return Ok();
         }
 
@@ -69,10 +76,13 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty product id");
                 return BadRequest(nameof(id));
             }
 
             await ControllerServices.UpdateProductSeoData(id, model);
+            _logger.LogInformation("SEO data updated for product with id {productId}", id);
+
             return Ok();
         }
 
@@ -81,10 +91,13 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty product id");
                 return BadRequest(nameof(id));
             }
 
             await ControllerServices.DeleteProduct(id);
+            _logger.LogInformation("Product {productId} deleted", id);
+
             return Ok();
         }
 
@@ -93,10 +106,13 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty product id");
                 return BadRequest(nameof(id));
             }
 
             await ControllerServices.RestoreProduct(id);
+            _logger.LogInformation("Product {productId} restored", id);
+
             return Ok();
         }
 
@@ -105,10 +121,13 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty product id");
                 return BadRequest(nameof(id));
             }
 
             await ControllerServices.SetProductVendor(id, model);
+            _logger.LogInformation("Vendor {vendorId} set for product {productId}", model.BrandId, id);
+
             return Ok();
         }
 
@@ -117,10 +136,13 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty product id");
                 return BadRequest(nameof(id));
             }
 
             var variants = ControllerServices.GetProductVariants(id);
+            _logger.LogInformation("Found {variantsNumber} for product {productId}", variants.Count(), id);
+
             return Ok(variants);
         }
 
@@ -129,10 +151,13 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty product id");
                 return BadRequest(nameof(id));
             }
 
             await ControllerServices.AddProductVariant(id, model);
+            _logger.LogInformation("Add variant to product {productId}", id);
+
             return Ok();
         }
 
@@ -141,15 +166,19 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty product id");
                 return BadRequest(nameof(id));
             }
 
             if (variantId == Guid.Empty)
             {
+                _logger.LogError("Empty variant id");
                 return BadRequest(nameof(variantId));
             }
 
             await ControllerServices.ChangeProductVariant(id, variantId, model);
+            _logger.LogInformation("Variant {variantId} updated for product {productId}", variantId, id);
+
             return Ok();
         }
 
@@ -158,15 +187,19 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty product id");
                 return BadRequest(nameof(id));
             }
 
             if (variantId == Guid.Empty)
             {
+                _logger.LogError("Empty variant id");
                 return BadRequest(nameof(variantId));
             }
 
             await ControllerServices.DeleteProductVariant(id, variantId);
+            _logger.LogInformation("Deleted variant {variantId} from product {productId}", variantId, id);
+
             return Ok();
         }
     }

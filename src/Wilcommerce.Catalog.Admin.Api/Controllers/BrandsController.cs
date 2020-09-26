@@ -27,7 +27,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         public IActionResult Get([FromQuery]BrandListQueryModel queryModel)
         {
             var model = ControllerServices.GetBrands(queryModel);
-            _logger.LogInformation($"Found {model.Items.Count()} brands of {model.Total}");
+            _logger.LogInformation("Found {itemsNumber} brands of {itemsTotal}", model.Items.Count(), model.Total);
 
             return Ok(model);
         }
@@ -36,7 +36,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         public async Task<IActionResult> Post([FromForm]BrandInfoModel model)
         {
             var brandId = await ControllerServices.CreateNewBrand(model);
-            _logger.LogInformation($"New brand created with id {brandId}");
+            _logger.LogInformation("New brand created with id {brandId}", brandId);
 
             return CreatedAtAction(nameof(Get), new { id = brandId }, brandId);
         }
@@ -51,7 +51,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             }
 
             var model = ControllerServices.GetBrandDetail(id);
-            _logger.LogInformation($"Brand found with id {id}");
+            _logger.LogInformation("Brand found with id {brandId}", id);
 
             return Ok(model);
         }
@@ -83,7 +83,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             }
 
             await ControllerServices.UpdateBrandInfo(id, model);
-            _logger.LogInformation($"Info updated for brand with {id}");
+            _logger.LogInformation("Info updated for brand with {brandId}", id);
 
             return Ok();
         }
@@ -98,7 +98,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             }
 
             await ControllerServices.UpdateBrandSeoData(id, model);
-            _logger.LogInformation($"SEO data updated for brand with {id}");
+            _logger.LogInformation("SEO data updated for brand with id {brandId}", id);
 
             return Ok();
         }
@@ -113,7 +113,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             }
 
             await ControllerServices.DeleteBrand(id);
-            _logger.LogInformation($"Brand with id {id} deleted");
+            _logger.LogInformation("Brand with id {brandId} deleted", id);
 
             return Ok();
         }
@@ -128,7 +128,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             }
 
             await ControllerServices.RestoreBrand(id);
-            _logger.LogInformation($"Brand with id {id} restored");
+            _logger.LogInformation("Brand with id {brandId} restored", id);
 
             return Ok();
         }

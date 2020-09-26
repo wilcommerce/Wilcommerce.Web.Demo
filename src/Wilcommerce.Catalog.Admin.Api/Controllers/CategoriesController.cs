@@ -27,7 +27,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         public IActionResult Get([FromQuery]CategoryListQueryModel queryModel = null)
         {
             var model = ControllerServices.GetCategories(queryModel);
-            _logger.LogInformation($"Found {model.Items.Count()} categories of {model.Total}");
+            _logger.LogInformation("Found {itemsNumber} categories of {itemsTotal}", model.Items.Count(), model.Total);
 
             return Ok(model);
         }
@@ -35,7 +35,15 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                _logger.LogError("Empty category id");
+                return BadRequest(nameof(id));
+            }
+
             var model = ControllerServices.GetCategoryDetail(id);
+            _logger.LogInformation("Category found with id {categoryId}", id);
+
             return Ok(model);
         }
 
@@ -43,6 +51,8 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         public async Task<IActionResult> Post([FromBody]CategoryInfoModel model)
         {
             var categoryId = await ControllerServices.CreateNewCategory(model);
+            _logger.LogInformation("New category created with id {categoryId}", categoryId);
+
             return CreatedAtAction(nameof(Get), new { id = categoryId }, categoryId);
         }
 
@@ -51,10 +61,13 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty category id");
                 return BadRequest(nameof(id));
             }
 
             await ControllerServices.UpdateCategoryInfo(id, model);
+            _logger.LogInformation("Info updated for category with {categoryId}", id);
+
             return Ok();
         }
 
@@ -63,10 +76,13 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty category id");
                 return BadRequest(nameof(id));
             }
 
             await ControllerServices.UpdateCategorySeoData(id, model);
+            _logger.LogInformation("SEO data updated for category with id {categoryId}", id);
+
             return Ok();
         }
 
@@ -75,14 +91,18 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty category id");
                 return BadRequest(nameof(id));
             }
             if (childId == Guid.Empty)
             {
+                _logger.LogError("Empty child category id");
                 return BadRequest(nameof(childId));
             }
 
             await ControllerServices.AddChildToCategory(id, childId);
+            _logger.LogInformation("Child {childId} added to category {categoryId}", childId, id);
+
             return Ok();
         }
 
@@ -91,14 +111,18 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty category id");
                 return BadRequest(nameof(id));
             }
             if (parentId == Guid.Empty)
             {
+                _logger.LogError("Empty parent category id");
                 return BadRequest(nameof(parentId));
             }
 
             await ControllerServices.AddParentCategory(id, parentId);
+            _logger.LogInformation("Add parent {parentId} to category {categoryId}", parentId, id);
+
             return Ok();
         }
 
@@ -107,10 +131,13 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty category id");
                 return BadRequest(nameof(id));
             }
 
             await ControllerServices.DeleteCategory(id);
+            _logger.LogInformation("Category {categoryId} deleted", id);
+
             return Ok();
         }
 
@@ -119,10 +146,13 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty category id");
                 return BadRequest(nameof(id));
             }
 
             await ControllerServices.RestoreCategory(id);
+            _logger.LogInformation("Category {categoryId} restored", id);
+
             return Ok();
         }
 
@@ -131,14 +161,18 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty category id");
                 return BadRequest(nameof(id));
             }
             if (childId == Guid.Empty)
             {
+                _logger.LogError("Empty child category id");
                 return BadRequest(nameof(childId));
             }
 
             await ControllerServices.RemoveChildFromCategory(id, childId);
+            _logger.LogInformation("Child {childId} removed from category {categoryId}", childId, id);
+
             return Ok();
         }
 
@@ -147,14 +181,18 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
         {
             if (id == Guid.Empty)
             {
+                _logger.LogError("Empty category id");
                 return BadRequest(nameof(id));
             }
             if (parentId == Guid.Empty)
             {
+                _logger.LogError("Empty category id");
                 return BadRequest(nameof(parentId));
             }
 
             await ControllerServices.RemoveParentCategory(id, parentId);
+            _logger.LogInformation("Parent {parentId} removed from category {categoryId}", parentId, id);
+
             return Ok();
         }
 
