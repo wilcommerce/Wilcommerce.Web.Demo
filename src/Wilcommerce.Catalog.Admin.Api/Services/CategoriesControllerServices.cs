@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -89,6 +90,8 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
         public CategoryDetailModel GetCategoryDetail(Guid categoryId)
         {
             var category = Database.Categories
+                .Include(c => c.Parent)
+                .Include(c => c.Children)
                 .SingleOrDefault(c => c.Id == categoryId);
 
             if (category is null)
