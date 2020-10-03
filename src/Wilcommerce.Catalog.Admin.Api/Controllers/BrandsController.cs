@@ -65,7 +65,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             }
 
             var logo = ControllerServices.GetBrandLogo(id);
-            if (logo == null)
+            if (logo == null || logo.Data.Count() == 0)
             {
                 return NoContent();
             }

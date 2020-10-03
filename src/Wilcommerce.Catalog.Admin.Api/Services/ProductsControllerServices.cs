@@ -28,7 +28,11 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
                 queryModel = new ProductListQueryModel();
             }
 
-            var productsQuery = Database.Products.AsNoTracking();
+            var productsQuery = Database.Products
+                .Include(p => p.MainProduct)
+                .Active()
+                .MainProducts();
+
             if (queryModel.ActiveOnly)
             {
                 productsQuery = productsQuery.Active();
@@ -96,7 +100,10 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
 
         public ProductDetailModel GetProductDetail(Guid productId)
         {
-            var product = Database.Products.SingleOrDefault(p => p.Id == productId);
+            var product = Database.Products
+                .Include(p => p.Vendor)
+                .SingleOrDefault(p => p.Id == productId);
+
             if (product is null)
             {
                 return null;
