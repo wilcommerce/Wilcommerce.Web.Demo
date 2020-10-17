@@ -47,6 +47,15 @@
                                 <i class="fas fa-undo-alt"></i> Restore
                             </button>
                         }
+                        <div class="btn-group" role="group" aria-label="Other actions">
+                            <button type="button" id="@($"productActions_{product.Id}")" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">...</button>
+                            <div class="dropdown-menu" aria-labelledby="@($"productActions_{product.Id}")">
+                                <a class="dropdown-item" href="#">Attributes</a>
+                                <a class="dropdown-item" href="#">Tier prices</a>
+                                <a class="dropdown-item" href="#">Images</a>
+                                <a class="dropdown-item" href="#">Reviews</a>
+                            </div>
+                        </div>
                     </div>
                 </td>
             </tr>
