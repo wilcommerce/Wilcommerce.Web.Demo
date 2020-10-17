@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Wilcommerce.Catalog.Admin.Api.Services;
+using Wilcommerce.Catalog.Admin.Models.ProductAttributes;
 
 namespace Wilcommerce.Catalog.Admin.Api.Controllers
 {
@@ -50,11 +51,12 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
                 return BadRequest(nameof(id));
             }
 
-            return Ok();
+            var model = ControllerServices.GetProductAttributeDetail(productId, id);
+            return Ok(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Guid productId)
+        public async Task<IActionResult> Post(Guid productId, [FromBody]ProductAttributeModel model)
         {
             if (productId == Guid.Empty)
             {
@@ -62,24 +64,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
                 return BadRequest(nameof(productId));
             }
 
-            return Ok();
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(Guid productId, Guid id)
-        {
-            if (productId == Guid.Empty)
-            {
-                _logger.LogError("Empty product id");
-                return BadRequest(nameof(productId));
-            }
-
-            if (id == Guid.Empty)
-            {
-                _logger.LogError("Empty attribute id");
-                return BadRequest(nameof(id));
-            }
-
+            await ControllerServices.CreateNewProductAttribute(productId, model);
             return Ok();
         }
 
@@ -98,6 +83,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
                 return BadRequest(nameof(id));
             }
 
+            await ControllerServices.DeleteProductAttribute(productId, id);
             return Ok();
         }
     }
