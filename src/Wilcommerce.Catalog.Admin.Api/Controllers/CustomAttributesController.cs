@@ -99,5 +99,12 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
 
             return Ok();
         }
+
+        [HttpGet("search")]
+        public IActionResult GetSearch(string query = null)
+        {
+            var attributes = ControllerServices.SearchCustomAttributes(query);
+            return Ok(attributes);
+        }
     }
 }

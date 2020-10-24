@@ -1,4 +1,5 @@
 ﻿using System;
+using Wilcommerce.Catalog.Admin.Models.CustomAttributes;
 
 namespace Wilcommerce.Catalog.Admin.Models.ProductAttributes
 {
@@ -8,18 +9,11 @@ namespace Wilcommerce.Catalog.Admin.Models.ProductAttributes
 
         public string Value { get; set; }
 
-        public AttributeInfo Attribute { get; set; }
+        public CustomAttributeDescriptorModel Attribute { get; set; }
 
         public ProductAttributeModel()
         {
-            Attribute = new AttributeInfo();
-        }
-
-        public class AttributeInfo
-        {
-            public Guid Id { get; set; }
-
-            public string Name { get; set; }
+            Attribute = new CustomAttributeDescriptorModel();
         }
     }
 }

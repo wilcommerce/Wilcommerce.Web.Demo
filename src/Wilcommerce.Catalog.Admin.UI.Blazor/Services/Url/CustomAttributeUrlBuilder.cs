@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using Wilcommerce.Catalog.Admin.Models.CustomAttributes;
 using Wilcommerce.Web.AspNetCore.Url;
 
@@ -34,5 +35,16 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Services.Url
         public string DeleteCustomAttributeUrl(Guid attributeId) => $"{ApiPrefix}/{ResourceName}/{attributeId}";
 
         public string RestoreCustomAttributeUrl(Guid attributeId) => $"{ApiPrefix}/{ResourceName}/{attributeId}/restore";
+
+        public string SearchCustomAttributesUrl(string query)
+        {
+            var url = $"{ApiPrefix}/{ResourceName}/search";
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                url = $"{url}?query={HttpUtility.UrlEncode(query)}";
+            }
+
+            return url;
+        }
     }
 }

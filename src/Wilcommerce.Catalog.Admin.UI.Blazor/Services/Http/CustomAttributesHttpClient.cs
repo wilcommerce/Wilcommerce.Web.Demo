@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -77,6 +78,14 @@ namespace Wilcommerce.Catalog.Admin.UI.Blazor.Services.Http
             {
                 throw new ApplicationException($"Restore custom attribute {attributeId} call ended with status code {response.StatusCode}");
             }
+        }
+
+        public async Task<IEnumerable<CustomAttributeDescriptorModel>> SearchCustomAttributes(string query = null)
+        {
+            var url = UrlBuilder.SearchCustomAttributesUrl(query);
+            var attributes = await Client.GetFromJsonAsync<IEnumerable<CustomAttributeDescriptorModel>>(url);
+
+            return attributes;
         }
     }
 }

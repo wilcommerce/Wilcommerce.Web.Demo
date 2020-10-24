@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Wilcommerce.Catalog.Admin.Models.CustomAttributes;
 using Wilcommerce.Catalog.Admin.Models.ProductAttributes;
 using Wilcommerce.Catalog.Commands;
 using Wilcommerce.Catalog.ReadModels;
@@ -56,7 +57,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
 
             var model = new ProductAttributeModel
             {
-                Attribute = new ProductAttributeModel.AttributeInfo
+                Attribute = new CustomAttributeDescriptorModel
                 {
                     Id = attribute.Attribute.Id,
                     Name = attribute.Attribute.Name

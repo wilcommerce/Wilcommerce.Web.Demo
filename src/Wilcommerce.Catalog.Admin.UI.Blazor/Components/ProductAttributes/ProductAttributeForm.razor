@@ -1,7 +1,20 @@
 ﻿<EditForm Context="context" Model="Model" OnValidSubmit="HandleSubmit" class="col-md-12 mt-3">
     <DataAnnotationsValidator />
 
+    <SelectField TItem="CustomAttributeDescriptorModel"
+                 TValue="CustomAttributeDescriptorModel"
+                 Label="Attribute"
+                 CssClass="form-control"
+                 FieldId="@nameof(Model.Attribute)"
+                 Items="attributes"
+                 EmptyText="Choose an attribute"
+                 Disabled="false"
+                 DisplayValue="attribute => attribute.Name"
+                 OptionValue="attribute => attribute"
+                 @bind-Value="Model.Attribute"/>
+
     <TextField Label="Value"
+               FieldId="@nameof(Model.Value)"
                CssClass="form-control"
                Disabled="false"
                @bind-Value="Model.Value"/>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Wilcommerce.Catalog.Admin.Models.CustomAttributes;
 
@@ -17,5 +18,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
         Task DeleteCustomAttribute(Guid customAttributeId);
 
         Task RestoreCustomAttribute(Guid customAttributeId);
+        
+        IEnumerable<CustomAttributeDescriptorModel> SearchCustomAttributes(string query);
     }
 }

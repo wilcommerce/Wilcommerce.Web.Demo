@@ -108,5 +108,26 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
         public async Task DeleteCustomAttribute(Guid customAttributeId) => await Commands.DeleteCustomAttribute(customAttributeId);
 
         public async Task RestoreCustomAttribute(Guid customAttributeId) => await Commands.RestoreCustomAttribute(customAttributeId);
+
+        public IEnumerable<CustomAttributeDescriptorModel> SearchCustomAttributes(string query)
+        {
+            var attributesQuery = Database.CustomAttributes
+                .Active();
+
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                attributesQuery = attributesQuery.Where(a => a.Name.Contains(query));
+            }
+
+            var attributes = attributesQuery
+                .OrderBy(a => a.Name)
+                .Select(a => new CustomAttributeDescriptorModel
+                {
+                    Id = a.Id,
+                    Name = a.Name
+                }).ToArray();
+
+            return attributes;
+        }
     }
 }
