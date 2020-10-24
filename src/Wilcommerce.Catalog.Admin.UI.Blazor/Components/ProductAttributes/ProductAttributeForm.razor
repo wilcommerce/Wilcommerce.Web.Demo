@@ -1,0 +1,8 @@
+﻿<EditForm Context="context" Model="Model" OnValidSubmit="HandleSubmit" class="col-md-12 mt-3">
+    <DataAnnotationsValidator />
+
+    <TextField Label="Value"
+               CssClass="form-control"
+               Disabled="false"
+               @bind-Value="Model.Value"/>
+</EditForm>

@@ -1,0 +1,19 @@
+﻿<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            <th>Value</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var productAttribute in Attributes)
+        {
+            <tr>
+                <td>@productAttribute.AttributeName</td>
+                <td>@productAttribute.Value?.ToString()</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>

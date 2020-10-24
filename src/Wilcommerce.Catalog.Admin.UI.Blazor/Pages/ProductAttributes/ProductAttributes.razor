@@ -1,0 +1,30 @@
+﻿@page "/catalog/products/{productId}/attributes"
+
+<AdminPage Title="Product attributes">
+    <Toolbar>
+        <a href="catalog/products" class="btn btn-primary">
+            <i class="fas fa-chevron-circle-left"></i> Back to list
+        </a>
+    </Toolbar>
+    <PageContent>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col">
+                        @if (productAttributes == null)
+                        {
+                            <Loader />
+                        }
+                        else
+                        {
+                            <ProductAttributeList Attributes="productAttributes" />
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <ProductAttributeForm Model="productAttribute" />
+            </div>
+        </div>
+    </PageContent>
+</AdminPage>

@@ -61,7 +61,7 @@ namespace Wilcommerce.Catalog.Admin.Api.Services
                     Id = attribute.Attribute.Id,
                     Name = attribute.Attribute.Name
                 },
-                Value = attribute.Value
+                Value = attribute.Value?.ToString()
             };
 
             return model;

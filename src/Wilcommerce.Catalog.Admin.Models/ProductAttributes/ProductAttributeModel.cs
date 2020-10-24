@@ -4,7 +4,9 @@ namespace Wilcommerce.Catalog.Admin.Models.ProductAttributes
 {
     public class ProductAttributeModel
     {
-        public object Value { get; set; }
+        public Guid Id { get; set; }
+
+        public string Value { get; set; }
 
         public AttributeInfo Attribute { get; set; }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +32,8 @@ namespace Wilcommerce.Catalog.Admin.Api.Controllers
             }
 
             var model = ControllerServices.GetProductAttributes(productId);
+            _logger.LogInformation("Found {itemsNumber} attributes for product {productId}", model.Count(), productId);
+
             return Ok(model);
         }
 
